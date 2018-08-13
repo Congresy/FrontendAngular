@@ -5,11 +5,13 @@ import { FormsModule } from '@angular/forms';
 import { ConferenciaService } from './conferencia/conferencia.service';
 import { AppComponent } from './app.component';
 import { TestComponent } from './test/test.component';
-import {ConferenciaComponent} from './conferencia/conferencia.component';
+import {ConferenciaComponent, CreateConferenciaComponent} from './conferencia/conferencia.component';
+import { LoginComponent } from './login/login.component';
+import {MatButtonModule, MatCheckboxModule} from '@angular/material';
 
 @NgModule({
-    imports: [BrowserModule, FormsModule, HttpClientModule],
-    declarations: [AppComponent, TestComponent, ConferenciaComponent],
+    imports: [BrowserModule, FormsModule, HttpClientModule, MatButtonModule, MatCheckboxModule],
+    declarations: [AppComponent, TestComponent, ConferenciaComponent, LoginComponent, CreateConferenciaComponent],
     providers: [ConferenciaService],
     schemas: [CUSTOM_ELEMENTS_SCHEMA],
     bootstrap: [AppComponent]

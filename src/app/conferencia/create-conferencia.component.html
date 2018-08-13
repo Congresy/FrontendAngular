@@ -1,0 +1,13 @@
+<form #f="ngForm"
+      (ngSubmit)="crearConferencia(f.value)">
+  <input type="text" name="name" placeholder="Name" ngModel>
+  <input type="text" name="organizator" placeholder="Organizator" ngModel>
+  <input type="text" name="description" placeholder="Description" ngModel><br><br>
+  <input type="text" name="theme" placeholder="Theme" ngModel>
+  <input type="text" name="start" placeholder="Start dd/mm/yyyy hh:mm:ss"ngModel>
+  <input type="text" name="end" placeholder="End dd/mm/yyyy hh:mm:ss" ngModel>
+  <input type="text" name="price" placeholder="Precio" ngModel><br><br>
+  <input type="text" name="speakersNames" placeholder="Speakers" ngModel>
+  <input type="number" name="allowedParticipants" placeholder="Participants" ngModel>
+  <button type="submit" (click)="crearConferencia()" color="primary" mat-button>Crear conferencia</button>
+</form>

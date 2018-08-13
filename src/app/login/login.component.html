@@ -1,0 +1,5 @@
+<form >
+  <label for="user">Nickname:</label><input id="user" #user type="text">
+  <label for="pass" >Password:</label><input id="pass" #pass type="password">
+  <button type="submit" (click)="postLogin(user,pass)">Login</button>
+</form>

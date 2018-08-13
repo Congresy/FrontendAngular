@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import {ConferenciaService, Conferencia} from './conferencia/conferencia.service';
+import {ConferenciaService} from './conferencia/conferencia.service';
 
 @Component({
   selector: 'app-root',
@@ -8,7 +8,7 @@ import {ConferenciaService, Conferencia} from './conferencia/conferencia.service
 })
 export class AppComponent implements OnInit {
 
-  conferencias: Conferencia[];
+  conferencias: JSON[];
   constructor(
     public conferenciaService: ConferenciaService
   ) {
@@ -19,11 +19,11 @@ export class AppComponent implements OnInit {
 
   getConferencias(): void {
     this.conferenciaService.getConferencias()
-      .subscribe(conferencias => {
-        for (let _i = 0; _i < conferencias.length; _i++) {
-          this.conferenciaService.getOrganizator(conferencias[_i].organizator).subscribe(data => conferencias[_i].organizator = data.name);
+      .subscribe(data => {
+        for (let _i = 0; _i < data.length; _i++) {
+          this.conferenciaService.getOrganizator(data[_i]['organizator']).subscribe(conf => data[_i]['organizator'] = conf.name);
         }
-        this.conferencias = conferencias;
+        this.conferencias = data;
       });
   }
 

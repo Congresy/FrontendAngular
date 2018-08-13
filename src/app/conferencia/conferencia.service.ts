@@ -11,11 +11,12 @@ const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/js
 export class ConferenciaService {
 
   private conferencesUrl = 'https://congresy.herokuapp.com/conferences/detailed?order=name';
+  private createConferenceUrl = 'https://congresy.herokuapp.com/conferences';
   private organizatorUrl = 'https://congresy.herokuapp.com/actors/';
   constructor (private http: HttpClient) {}
 
-  getConferencias(): Observable<Conferencia[]> {
-    return this.http.get<Conferencia[]>(this.conferencesUrl, {headers: httpOptions.headers})
+  getConferencias(): Observable<Array<JSON>> {
+    return this.http.get<JSON[]>(this.conferencesUrl, {headers: httpOptions.headers})
       .pipe(
         tap(conferences => this.log(`fetched conferences`)),
         catchError(this.handleError('getConferences', []))
@@ -28,38 +29,24 @@ export class ConferenciaService {
       catchError(this.handleError<Organizator>(`getOrganizator id=${id}`))
     );
 }
-
-  // getUser(id: number): Observable<User> {
-  //   const url = `${this.usersUrl}/${id}`;
-  //   return this.http.get<User>(url).pipe(
-  //     tap(_ => this.log(`fetched hero id=${id}`)),
-  //     catchError(this.handleError<User>(`getUser id=${id}`))
-  //   );
-  // }
-
-  // addUser (user: User): Observable<User> {
-  //   return this.http.post<User>(this.usersUrl, user, httpOptions).pipe(
-  //     tap((user: User) => this.log(`added User w/ id=${user.id}`)),
-  //     catchError(this.handleError<User>('addUser'))
-  //   );
-  // }
-
-  // deleteUser (id: string): Observable<User> {
-  //   const url = `${this.usersUrl}/${id}`;
-
-  //   return this.http.delete<User>(url, httpOptions).pipe(
-  //     tap(_ => this.log(`deleted user id=${id}`)),
-  //     catchError(this.handleError<User>('deleteUser'))
-  //   );
-  // }
-
-  // updateUser (user: User): Observable<null> {
-  //   return this.http.put(this.usersUrl, user, httpOptions).pipe(
-  //     tap(_ => this.log(`updated user id=${user.id}`)),
-  //     catchError(this.handleError<any>('updateUser'))
-  //   );
-  // }
-
+// TODO eliminar objeto conferencia
+//  createConference (conference: Conferencia): Observable<Conferencia> {
+//     const conf = {
+//       'name': conference.name,
+//       'organizator': conference.organizator,
+//       'theme': conference.theme,
+//       'allowedParticipants': conference.allowedParticipants,
+//       'price': Number(conference.price),
+//       'start': conference.start,
+//       'end': conference.end,
+//       'speakersNames': conference.speakersNames
+//     };
+//     console.log(conf);
+//     return this.http.post<Conferencia>(this.createConferenceUrl, conference, httpOptions).pipe(
+//       tap((confe: Conferencia) => this.log(`added Conference w/ id=${confe.id}`)),
+//       catchError(this.handleError<Conferencia>('createConference'))
+//     );
+//   }
   private handleError<T> (operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
       console.error(error);
@@ -72,13 +59,20 @@ export class ConferenciaService {
   }
 }
 
-export interface Conferencia {
-  name: string;
-  theme: string;
-  comments: Array<string>;
-  organizator: string;
-  id: string;
-}
+// export interface Conferencia {
+//   name: string;
+//   theme: string;
+//   comments: Array<string>;
+//   organizator: string;
+//   price: number;
+//   popularity: number;
+//   allowedParticipants: number;
+//   description: string;
+//   speakersNames: string;
+//   start: string;
+//   end: string;
+//   id: string;
+// }
 
 export interface Organizator {
   name: string;
