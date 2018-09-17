@@ -9,6 +9,7 @@ import {ConferenciaService} from './conferencia/conferencia.service';
 export class AppComponent implements OnInit {
 
   conferencias: JSON[];
+  confNum: number;
   constructor(
     public conferenciaService: ConferenciaService
   ) {

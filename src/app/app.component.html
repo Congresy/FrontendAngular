@@ -1,6 +1,15 @@
-<app-conference-create></app-conference-create>
+ <!-- header -->
+ <app-header></app-header>
+
+ <!-- routes will be rendered here -->
+ <router-outlet></router-outlet>
+
+ <!-- footer -->
+ <app-footer></app-footer>
+
+<!-- <h1>Hay un total de {{ conferencias.length }} conferencias registradas en el sistema</h1>
 <ul *ngFor="let conferencia of conferencias">
   <li>
     <app-conference [conferencia]="conferencia"></app-conference>
   </li>
-</ul>
+</ul> -->

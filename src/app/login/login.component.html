@@ -1,5 +1,5 @@
-<form >
-  <label for="user">Nickname:</label><input id="user" #user type="text">
-  <label for="pass" >Password:</label><input id="pass" #pass type="password">
-  <button type="submit" (click)="postLogin(user,pass)">Login</button>
+<form (ngSubmit)="postLogin()">
+  <input type="text" name="username" class="input" placeholder="Nick" [(ngModel)]="username" #usernameInput="ngModel" required>
+  <input type="password" name="password" class="input" placeholder="Password" [(ngModel)]="password" #passwordInput="ngModel" required>
+  <button type="submit">Login</button>
 </form>

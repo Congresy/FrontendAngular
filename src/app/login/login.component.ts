@@ -3,7 +3,7 @@ import {HttpClient, HttpHeaders} from '@angular/common/http';
 import {RequestOptions} from '@angular/http';
 import {catchError} from 'rxjs/operators';
 
-const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/x-www-form-urlencoded' })};
+const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/x-www-form-urlencoded', 'responseType': 'text' })};
 
 @Component({
   selector: 'app-login',
@@ -12,16 +12,15 @@ const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/x-
 })
 export class LoginComponent implements OnInit {
 
+  username: string;
+  password: string;
   constructor(private http: HttpClient) { }
 
   ngOnInit() {
   }
-  postLogin(user: HTMLInputElement, pass: HTMLInputElement) {
-    const body = {
-      'username': user.value,
-      'password': pass.value
-    };
-    console.log(body);
-    this.http.post('https://congresy.herokuapp.com/login', body, httpOptions).subscribe(data => console.log(data));
+  postLogin() {
+    this.http.post('https://congresy.herokuapp.com/login?username=' + this.username + '&password=' + this.password,
+     {}, httpOptions).subscribe(data => console.log(data),
+    error => console.log(error));
   }
 }
