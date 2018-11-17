@@ -1,8 +1,8 @@
 footer{
-    background-color:grey;
+    background-color: green;
     bottom: 0;
-    height: auto;
-    left:0;
-    margin: 0;
+    left: 0;
+    position: fixed;
+    text-align: center;
     width: 100%;
 }

@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import {HttpClient, HttpHeaders} from '@angular/common/http';
-import {RequestOptions} from '@angular/http';
-import {catchError} from 'rxjs/operators';
+import { UsersService } from '../services/users.service';
+import { Router } from '@angular/router';
 
-const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/x-www-form-urlencoded', 'responseType': 'text' })};
+const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/x-www-form-urlencoded', 'responseType': 'text', 'withCredentials':'true' })};
 
 @Component({
   selector: 'app-login',
@@ -14,13 +14,16 @@ export class LoginComponent implements OnInit {
 
   username: string;
   password: string;
-  constructor(private http: HttpClient) { }
+  role: string;
+  constructor(private http: HttpClient, private userService: UsersService, private route: Router) { }
 
   ngOnInit() {
+    this.role = sessionStorage.getItem('role');
   }
-  postLogin() {
-    this.http.post('https://congresy.herokuapp.com/login?username=' + this.username + '&password=' + this.password,
-     {}, httpOptions).subscribe(data => console.log(data),
-    error => console.log(error));
+
+  postLogin(){
+    this.userService.login(this.username, this.password);
+    this.route.navigate([""]);
   }
+  
 }

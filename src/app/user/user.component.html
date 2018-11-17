@@ -1,0 +1,16 @@
+<form (ngSubmit)="postUser()">
+  <h2>Cuenta de usuario</h2>
+  <input type="text" name="username" class="input" placeholder="Nick" [(ngModel)]="username" #usernameInput="ngModel" required>
+  <input type="password" name="password" class="input" placeholder="Password" [(ngModel)]="password" #passwordInput="ngModel" required>
+  <h2>Datos personales</h2>
+  <input type="text" name="name" class="input" placeholder="Nombre" [(ngModel)]="name" #nameInput="ngModel" required>
+  <input type="text" name="surname" class="input" placeholder="Apellidos" [(ngModel)]="surname" #surnameInput="ngModel" required>
+  <input type="text" name="phone" class="input" placeholder="Teléfono" [(ngModel)]="phone" #phoneInput="ngModel" required>
+  <input type="text" name="email" class="input" placeholder="Email" [(ngModel)]="email" #emailInput="ngModel" required>
+  <input type="text" name="photo" class="input" placeholder="Foto de perfil" [(ngModel)]="photo" #photoInput="ngModel" required>
+  <select name="role" [(ngModel)]="role" #roleInput="ngModel" required>
+    <option value="User">User</option>
+    <option value="Organizator">Organizator</option>
+  </select>
+  <button type="submit">Register</button>
+</form>
