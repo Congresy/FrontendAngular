@@ -25,7 +25,7 @@ export class UsersService {
   login(username, password){
     this.http.post('https://congresy.herokuapp.com/login?username=' + username + '&password=' + password,
      {}, this.httpOptions).subscribe(response => {console.log("BIEN")}, 
-    error => { this.role$.next(this.getUser(username).subscribe())
+    error => { this.getUser(username).subscribe(user=>this.role$.next(user.role))
               });
     localStorage.setItem("user",username);
             
