@@ -4,10 +4,11 @@ import { Observable } from 'rxjs/Observable';
 import { catchError, tap } from 'rxjs/operators';
 import {of} from 'rxjs/observable/of';
 import { Routes } from '@angular/router';
+import { Subject } from 'rxjs/Subject';
 
 @Injectable()
 export class UsersService {
-
+  role$ = new Subject();
   httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json' })};
   role = "";
   user: JSON;
@@ -23,9 +24,10 @@ export class UsersService {
   //LOGIN
   login(username, password){
     this.http.post('https://congresy.herokuapp.com/login?username=' + username + '&password=' + password,
-     {}, this.httpOptions).subscribe(response => console.log("BIEN"), 
-    error => console.log(error));
-             localStorage.setItem("user",username);
+     {}, this.httpOptions).subscribe(response => {console.log("BIEN")}, 
+    error => { this.role$.next(this.getUser(username).subscribe())
+              });
+    localStorage.setItem("user",username);
             
   }
 

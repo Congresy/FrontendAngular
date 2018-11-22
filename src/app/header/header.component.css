@@ -1,4 +1,5 @@
-.header{
+.header {
+    background: inherit;
     background-color: green;
     left: 0;
     overflow: hidden;
@@ -6,4 +7,10 @@
     position: fixed;
     top: 0;
     width: 100%;
+    z-index: 10;
+}
+
+.header img {
+    height: 75px;
+    width: 75px;
 }

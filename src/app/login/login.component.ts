@@ -18,11 +18,12 @@ export class LoginComponent implements OnInit {
   constructor(private http: HttpClient, private userService: UsersService, private route: Router) { }
 
   ngOnInit() {
-    this.role = sessionStorage.getItem('role');
+    
   }
 
   postLogin(){
     this.userService.login(this.username, this.password);
+    this.userService.getUser(localStorage.getItem('user')).subscribe(data=> sessionStorage.setItem("role", data.role));
     this.route.navigate([""]);
   }
   

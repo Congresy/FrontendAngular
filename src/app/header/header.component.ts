@@ -6,10 +6,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./header.component.css']
 })
 export class HeaderComponent implements OnInit {
-
-  constructor() { }
+  role: string;
+  constructor() {
+    this.role = sessionStorage.getItem("role");
+   }
 
   ngOnInit() {
+   
   }
 
 }

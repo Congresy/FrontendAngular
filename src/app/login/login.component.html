@@ -1,7 +1,7 @@
 <div ng-if="role == ''" class="login-form">
-  <form  (ngSubmit)="postLogin()">
-  <mat-form-field><input matInput type="text" name="username" class="input" placeholder="Nick" [(ngModel)]="username" #usernameInput="ngModel" required></mat-form-field>
-  <input type="password" name="password" class="input" placeholder="Password" [(ngModel)]="password" #passwordInput="ngModel" required>
-  <button type="submit">Login</button>
-</form>
+    <form (ngSubmit)="postLogin()">
+        <input matInput placeholder="Nick" type="text" name="username" class="input" [(ngModel)]="username" #usernameInput="ngModel" required>
+        <input matInput type="password" name="password" class="input" placeholder="Password" [(ngModel)]="password" #passwordInput="ngModel" required>
+        <button type="submit">Login</button>
+    </form>
 </div>

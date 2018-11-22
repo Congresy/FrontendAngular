@@ -3,22 +3,21 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 import { Observable } from 'rxjs/Observable';
 import { catchError, tap } from 'rxjs/operators';
-import {of} from 'rxjs/observable/of';
-import {Router} from '@angular/router';
+import { of } from 'rxjs/observable/of';
 
-const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json' })};
+const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) };
 
 @Injectable()
 export class ConferenciaService {
 
-  private conferencesUrl = 'https://congresy.herokuapp.com/conferences/detailed?order=name';
+  private conferencesUrl = 'https://congresy.herokuapp.com/conferences';
   private createConferenceUrl = 'https://congresy.herokuapp.com/conferences';
   private organizatorUrl = 'https://congresy.herokuapp.com/actors/';
   private placeUrl = 'https://congresy.herokuapp.com/places/';
-  constructor (private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   getConferencias(): Observable<Array<Conferencia>> {
-    return this.http.get<Conferencia[]>(this.conferencesUrl, {headers: httpOptions.headers})
+    return this.http.get<Conferencia[]>(this.conferencesUrl, { headers: httpOptions.headers })
       .pipe(
         tap(conferences => this.log(`fetched conferences`)),
         catchError(this.handleError('getConferences', []))
@@ -31,25 +30,25 @@ export class ConferenciaService {
       catchError(this.handleError<Organizator>(`getOrganizator id=${id}`))
     );
   }
-  
+
   getConf(id: string): Observable<Conferencia> {
-    return this.http.get<any>('https://congresy.herokuapp.com/conferences/detailed/'+id, {headers: httpOptions.headers})
+    return this.http.get<any>('https://congresy.herokuapp.com/conferences/detailed/' + id, { headers: httpOptions.headers })
       .pipe(
         tap(conferences => this.log(`fetched conferences`)),
         catchError(this.handleError('getConferences', []))
       );
   }
 
-  getPlace(id: string): Observable<Place>{
-    return this.http.get<any>(this.placeUrl+id, { headers: new HttpHeaders({ 'Accept': 'application/json' })})
-    .pipe(
-      tap(places => this.log(`fetched places`)),
-      catchError(this.handleError('getPlaces',[]))
-    );
+  getPlace(id: string): Observable<Place> {
+    return this.http.get<any>(this.placeUrl + id, { headers: new HttpHeaders({ 'Accept': 'application/json' }) })
+      .pipe(
+        tap(places => this.log(`fetched places`)),
+        catchError(this.handleError('getPlaces', []))
+      );
   }
 
-// TODO eliminar objeto conferencia
- createConference (conference: Conferencia): Observable<Conferencia> {
+  // TODO eliminar objeto conferencia
+  createConference(conference: Conferencia): Observable<Conferencia> {
     const conf = {
       'name': conference.name,
       'organizator': conference.organizator,
@@ -66,7 +65,12 @@ export class ConferenciaService {
       catchError(this.handleError<Conferencia>('createConference'))
     );
   }
-  private handleError<T> (operation = 'operation', result?: T) {
+
+  deleteConf(id: string){
+    return this.http.delete(this.conferencesUrl+"/"+id);
+  }
+
+  private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
       console.error(error);
       return of(result as T);
@@ -94,7 +98,7 @@ export interface Conferencia {
   place: string;
 }
 
-export interface Place{
+export interface Place {
   address: string;
   country: string;
   details: string;

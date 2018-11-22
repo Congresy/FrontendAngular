@@ -47,7 +47,6 @@ export class ProfileComponent implements OnInit {
   constructor(private http: HttpClient, private userService: UsersService) { 
   }
   ngOnInit() {
-    this.user = this.userService.getUser('josprigal').subscribe(data=>this.user=data);
-    
+    this.user = this.userService.getUser(localStorage.getItem("user")).subscribe(data=>this.user=data);
   }
 }

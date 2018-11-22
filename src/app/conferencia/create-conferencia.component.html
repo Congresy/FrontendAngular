@@ -1,15 +1,14 @@
 <div class="conferencia-form">
-  <form #f="ngForm"
-      (ngSubmit)="crearConferencia(f.value)">
-  <mat-form-field><input matInput type="text" name="name" placeholder="Name" ngModel></mat-form-field>
-  <mat-form-field><input matInput type="text" name="organizator" placeholder="Organizator" ngModel></mat-form-field>
-  <mat-form-field><input matInput type="text" name="description" placeholder="Description" ngModel></mat-form-field>
-  <mat-form-field><input matInput type="text" name="theme" placeholder="Theme" ngModel></mat-form-field>
-  <mat-form-field><input matInput type="text" name="start" placeholder="Start dd/mm/yyyy hh:mm:ss"ngModel></mat-form-field>
-  <mat-form-field><input matInput type="text" name="end" placeholder="End dd/mm/yyyy hh:mm:ss" ngModel></mat-form-field>
-  <mat-form-field><input matInput type="text" name="price" placeholder="Precio" ngModel></mat-form-field>
-  <mat-form-field><input matInput type="text" name="speakersNames" placeholder="Speakers" ngModel></mat-form-field>
-  <mat-form-field><input matInput type="number" name="allowedParticipants" placeholder="Participants" ngModel></mat-form-field>
-  <button type="submit" (click)="crearConferencia()" color="primary" mat-button>Crear conferencia</button>
-</form>
+    <form #f="ngForm" (ngSubmit)="crearConferencia(f.value)">
+        <mat-form-field><input matInput type="text" name="name" placeholder="Name" ngModel></mat-form-field>
+        <mat-form-field><input matInput type="text" name="organizator" placeholder="Organizator" ngModel></mat-form-field>
+        <mat-form-field><input matInput type="text" name="description" placeholder="Description" ngModel></mat-form-field>
+        <mat-form-field><input matInput type="text" name="theme" placeholder="Theme" ngModel></mat-form-field>
+        <mat-form-field><input matInput type="text" name="start" placeholder="Start dd/mm/yyyy hh:mm:ss" ngModel></mat-form-field>
+        <mat-form-field><input matInput type="text" name="end" placeholder="End dd/mm/yyyy hh:mm:ss" ngModel></mat-form-field>
+        <mat-form-field><input matInput type="text" name="price" placeholder="Precio" ngModel></mat-form-field>
+        <mat-form-field><input matInput type="text" name="speakersNames" placeholder="Speakers" ngModel></mat-form-field>
+        <mat-form-field><input matInput type="number" name="allowedParticipants" placeholder="Participants" ngModel></mat-form-field>
+        <button type="submit" (click)="crearConferencia()" color="primary" mat-button>Crear conferencia</button>
+    </form>
 </div>
