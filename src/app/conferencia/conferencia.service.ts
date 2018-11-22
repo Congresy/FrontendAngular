@@ -42,7 +42,7 @@ export class ConferenciaService {
   getPlace(id: string): Observable<Place> {
     return this.http.get<any>(this.placeUrl + id, { headers: new HttpHeaders({ 'Accept': 'application/json' }) })
       .pipe(
-        tap(places => this.log(`fetched places`)),
+        tap(places => this.log(`fetched place`)),
         catchError(this.handleError('getPlaces', []))
       );
   }

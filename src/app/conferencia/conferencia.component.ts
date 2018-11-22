@@ -2,6 +2,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ConferenciaService, Conferencia, Place } from './conferencia.service';
 import { Router, ActivatedRoute } from '@angular/router';
+import { DomSanitizer} from '@angular/platform-browser'
 
 @Component({
   selector: 'app-conference-simple',
@@ -37,10 +38,8 @@ export class ConferenciaComponent implements OnInit {
   }
 
 deleteConf(id: string){
-  this.conferenciaService.deleteConf(id).subscribe(res => console.log(res));
-  console.log("paso por el controlador")
+  this.conferenciaService.deleteConf(id).subscribe(res => this.ngOnInit());
   //this.router.navigate(["/conferencias"]);
-  this.ngOnInit();
 }
 }
 
@@ -73,24 +72,23 @@ export class ConferenciaDetailedComponent implements OnInit {
   conferencia: Conferencia;
   place: Place;
   place_id: string;
-  constructor(public conferenciaService: ConferenciaService, private activatedRoute: ActivatedRoute
-  ) {
-
+  constructor(public conferenciaService: ConferenciaService, private activatedRoute: ActivatedRoute, private sanitizer: DomSanitizer) {
   }
 
   ngOnInit() {
     this.activatedRoute.params.subscribe(params => {
       this.id = params['id'];
     });
-    this.conferenciaService.getPlace("5b8749296e0e8600040a62bb").subscribe(data => this.place = data);
     this.conferenciaService.getConf(this.id).subscribe(data => {
-    this.conferencia = data
-      this.place_id = data.place
+    this.conferencia = data;
+    this.conferenciaService.getPlace(data.place).subscribe(data => this.place = data);
     });
-    console.log("HOLAAAA" + this.conferencia.id)
-    this.conferenciaService.getPlace("5b8749296e0e8600040a62bb").subscribe(data => this.place = data);
-    console.log("HOLAAAA" + this.place);
+    
+  }
 
+  getGoogleURL(){
+    console.log(this.place.address.replace("C/","").replace(" ","+")+","+this.place.town+","+this.place.country);
+    return this.sanitizer.bypassSecurityTrustResourceUrl("https://www.google.com/maps/embed/v1/place?key=AIzaSyD98Q94QW9WHOR5L-pbGY-EcZCAkoyLRHE&q="+this.place.address.replace("C/","")+","+this.place.town+","+this.place.country);
   }
 
 }

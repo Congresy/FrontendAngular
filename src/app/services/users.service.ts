@@ -8,7 +8,7 @@ import { Subject } from 'rxjs/Subject';
 
 @Injectable()
 export class UsersService {
-  role$ = new Subject();
+  role$ = new Subject<string>();
   httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json' })};
   role = "";
   user: JSON;

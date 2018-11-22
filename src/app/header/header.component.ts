@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { UsersService } from '../services/users.service';
 
 @Component({
   selector: 'app-header',
@@ -7,12 +8,12 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
   role: string;
-  constructor() {
+  constructor(private userService: UsersService) {
     this.role = sessionStorage.getItem("role");
    }
 
   ngOnInit() {
-   
+   this.userService.role$.asObservable().subscribe(data=>this.role=data);
   }
 
 }
