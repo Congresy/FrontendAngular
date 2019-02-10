@@ -15,6 +15,7 @@ import { UserComponent, ProfileComponent } from './user/user.component';
 import { UsersService } from './services/users.service';
 import { AuthGuardService } from './services/auth-guard.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { EventComponent } from './event/event.component';
 
 
 @NgModule({
@@ -25,7 +26,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     declarations: [AppComponent,
         ConferenciaComponent, LoginComponent, CreateConferenciaComponent,
         HeaderComponent, FooterComponent, HomeComponent, UserComponent,
-        ConferenciaDetailedComponent, ProfileComponent],
+        ConferenciaDetailedComponent, ProfileComponent, EventComponent],
     providers: [ConferenciaService, UsersService, AuthGuardService],
     schemas: [CUSTOM_ELEMENTS_SCHEMA],
     bootstrap: [AppComponent]
