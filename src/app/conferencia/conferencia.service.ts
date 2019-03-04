@@ -16,6 +16,7 @@ export class ConferenciaService {
   private placeUrl = 'https://congresy.herokuapp.com/places/';
   constructor(private http: HttpClient) { }
 
+
   getConferencias(): Observable<Array<Conferencia>> {
     return this.http.get<Conferencia[]>(this.conferencesUrl, { headers: httpOptions.headers })
       .pipe(
@@ -66,8 +67,8 @@ export class ConferenciaService {
     );
   }
 
-  deleteConf(id: string){
-    return this.http.delete(this.conferencesUrl+"/"+id);
+  deleteConf(id: string) {
+    return this.http.delete(this.conferencesUrl + '/' + id);
   }
 
   private handleError<T>(operation = 'operation', result?: T) {
