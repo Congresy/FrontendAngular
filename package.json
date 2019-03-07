@@ -10,7 +10,7 @@
         "lint": "ng lint",
         "e2e": "ng e2e",
         "heroku-postbuild": "ng build --prod" 
-    },
+    }, 
     "engines": {
         "node": "11.10.1",
         "npm": "6.9.0-next.0"
