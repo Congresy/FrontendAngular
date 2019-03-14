@@ -5,6 +5,7 @@ import { LoginComponent } from './login/login.component';
 import { ConferenciaComponent, ConferenciaDetailedComponent, CreateConferenciaComponent } from './conferencia/conferencia.component';
 import { UserComponent, ProfileComponent } from './user/user.component';
 import { AuthGuardService } from './services/auth-guard.service';
+import { EventFormComponent } from './event/event-form.component';
 
 const routes: Routes = [
   {
@@ -36,6 +37,10 @@ const routes: Routes = [
   {
       path: 'conferencia-create',
       component: CreateConferenciaComponent
+  },
+  {
+      path: 'event-create',
+      component: EventFormComponent
   }
 ];
 @NgModule({

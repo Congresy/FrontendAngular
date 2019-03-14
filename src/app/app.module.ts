@@ -17,6 +17,8 @@ import { AuthGuardService } from './services/auth-guard.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { EventComponent } from './event/event.component';
 import { TestComponent } from './test/test.component';
+import { EventFormComponent } from './event/event-form.component';
+import { DatePipe } from '@angular/common';
 
 
 @NgModule({
@@ -27,8 +29,8 @@ import { TestComponent } from './test/test.component';
     declarations: [AppComponent,
         ConferenciaComponent, LoginComponent, CreateConferenciaComponent,
         HeaderComponent, FooterComponent, HomeComponent, UserComponent,
-        ConferenciaDetailedComponent, ProfileComponent, EventComponent, TestComponent],
-    providers: [ConferenciaService, UsersService, AuthGuardService],
+        ConferenciaDetailedComponent, ProfileComponent, EventComponent, TestComponent, EventFormComponent],
+    providers: [ConferenciaService, UsersService, AuthGuardService, DatePipe],
     schemas: [CUSTOM_ELEMENTS_SCHEMA],
     bootstrap: [AppComponent]
 })
