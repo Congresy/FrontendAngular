@@ -36,13 +36,13 @@ export class EventFormComponent implements OnInit {
   }
 
   onSubmit() {
-    this.eventForm.controls.start.setValue(this.dp.transform(new Date(this.eventForm.controls.start.value),'dd/MM/yyyy hh:mm:ss'));
-    this.eventForm.controls.end.setValue(this.dp.transform(new Date(this.eventForm.controls.end.value),'dd/MM/yyyy hh:mm:ss'));
+    
+    this.eventForm.controls.start.setValue(this.dp.transform(new Date(this.eventForm.controls.start.value),'dd/MM/yyyy hh:mm'));
+    this.eventForm.controls.end.setValue(this.dp.transform(new Date(this.eventForm.controls.end.value),'dd/MM/yyyy hh:mm'));
     this.eventForm.controls.conference.setValue("5b87489e6e0e8600040a62b6");
-    this.eventForm.controls.participants.setValue(["",""]);
-    this.eventForm.controls.speakers.setValue(["",""]);
     this.eventForm.controls.place.setValue("5b888df57ff5040004bb8838")
-    console.log(JSON.stringify(this.eventForm.value))
+    this.eventForm.controls.seatsLeft.setValue(this.eventForm.controls.allowedParticipants.value);
+    console.log(this.eventForm.value)
     this.http.post('https://congresy.herokuapp.com/events', JSON.stringify(this.eventForm.value), this.httpOptions).subscribe(data => console.log(data), error => console.log(error));
   }
 

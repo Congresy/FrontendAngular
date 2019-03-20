@@ -4,9 +4,9 @@ export class Evento {
     description: string = '';
     end: string = '';
     name: string = '';
-    participants: Array<string> = [""];
+    participants: Array<string> = ["5b889b907ff5040004bb8864"];
     place: string = '';
-    role: string = 'Ordinary';
+    role: string = 'Workshop';
     seatsLeft: number = 0;
     speakers: Array<string> = [""];
     start: string = '';
