@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { Evento } from '../models/Evento';
+import { Evento } from './../../models/Evento';
 import { DatePipe } from '@angular/common';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 
 @Component({
   selector: 'app-event-form',
   templateUrl: './event-form.component.html',
-  styleUrls: ['./event.component.css']
+  styleUrls: ['./../event.component.css']
 })
 export class EventFormComponent implements OnInit {
   httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) };

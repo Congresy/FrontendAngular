@@ -17,7 +17,7 @@ import { AuthGuardService } from './services/auth-guard.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { EventComponent } from './event/event.component';
 import { TestComponent } from './test/test.component';
-import { EventFormComponent } from './event/event-form.component';
+import { EventFormComponent } from './event/form/event-form.component';
 import { DatePipe } from '@angular/common';
 
 

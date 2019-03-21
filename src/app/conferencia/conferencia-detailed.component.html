@@ -1,12 +1,12 @@
 <div class="conf-detailed">
     <h1>{{conferencia.name}}</h1>
-    <label>Precio: </label>{{conferencia.price}}<br>
+    <label>Precio: </label>{{conferencia.price}} €<br>
     <label>Cupos: </label>{{conferencia.allowedParticipants}}<br>
     <label>Inicio: </label>{{conferencia.start}}<br>
     <label>Fin: </label>{{conferencia.end}}<br>
     <label>Ubicación: </label>{{place.address}}<br>
 
-    <iframe width="600" height="450" frameborder="0" style="border:0" [src]="getGoogleURL()" allowfullscreen>
-</iframe>
+    <iframe width="500" height="350" frameborder="0" style="border:0" [src]="getGoogleURL()" allowfullscreen>
+    </iframe>
 
-<app-list-event [conf]='id'></app-list-event>
+    <app-list-event [conf]='id'></app-list-event>
