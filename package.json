@@ -2,14 +2,15 @@
     "name": "conferencias",
     "version": "0.0.0",
     "license": "MIT",
+    "main": "src/server.js",
     "scripts": {
         "ng": "ng",
         "build": "ng build --prod",
         "test": "ng test",
         "lint": "ng lint",
         "e2e": "ng e2e",
-        "heroku-postbuild": "ng build --prod",
-        "start": "node server.js"
+        "start": "node server.js",
+        "postinstall": "ng build --aot -prod"
     },
     "private": true,
     "dependencies": {
