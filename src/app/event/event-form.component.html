@@ -1,0 +1,12 @@
+<form style="margin-top: 150px;" [formGroup]="eventForm" (ngSubmit)="onSubmit()" novalidate>
+    <mat-form-field><input matInput formControlName="name" type="text" placeholder="Nombre" required></mat-form-field>
+    <mat-form-field><input matInput formControlName="description" type="text" placeholder="Descripción" required>
+    </mat-form-field>
+    <mat-form-field><input matInput formControlName="allowedParticipants" type="number" min="0" placeholder="Cupos"
+            required></mat-form-field>
+    <mat-form-field><input matInput formControlName="speakers" type="text" placeholder="Ponentes" required>
+    </mat-form-field>
+    <mat-form-field><input matInput formControlName="start" type="date" placeholder="Inicio" required></mat-form-field>
+    <mat-form-field><input matInput formControlName="end" type="date" placeholder="Fin" required></mat-form-field>
+    <button type="submit" [disabled]="eventForm.pristine">Save</button>
+</form>

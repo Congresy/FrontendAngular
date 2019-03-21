@@ -4,12 +4,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) };
 @Component({
   selector: 'app-list-event',
-  template: `
-  <h1>EVENTOS</h1>
-  <a routerLink="/event-create">Crear evento</a>
-  <ul *ngFor="let evento of eventos">
-    {{evento.name}}
-  </ul>`,
+  templateUrl: './event.component.html',
   styleUrls: ['./event.component.css']
 })
 export class EventComponent implements OnInit {
