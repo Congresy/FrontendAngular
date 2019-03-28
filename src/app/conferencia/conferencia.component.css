@@ -1,7 +1,5 @@
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
 
-.conf,
-.conf-detailed,
-.conferencia-form {
-    margin-top: 150px;
+.simple{
+    width: 400px;
 }

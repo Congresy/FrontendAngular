@@ -1,7 +1,13 @@
 /* You can add global styles to this file, and also import other style files */
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
-
+*{
+    font-family: 'Montserrat', sans-serif;
+}
 html{
     font-family: 'Courier New', Courier, monospace;
     background-color: lightgray;
+}
+
+.content{
+    margin-top: 100px;
 }

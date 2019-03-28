@@ -9,7 +9,7 @@ const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/js
 })
 export class EventComponent implements OnInit {
 
-  //GET /events/all/conferences/{idConference}
+  // GET /events/all/conferences/{idConference}
   @Input() conf: string;
   eventos: any[];
   constructor(private http: HttpClient) { }

@@ -1,8 +1,8 @@
-<div class="conf">
-    <a routerLink='/conferencia-create'>Crear conferencia</a>
+<div class="content">
+    <a *ngIf="role == 'Organizator'" routerLink='/conferencia-create'>Crear conferencia</a>
     <ul *ngFor="let conferencia of conferencias">
         <div class="conferencia-style">
-            <mat-card>
+            <mat-card class="simple">
                 <mat-card-title><b>{{conferencia.name}}</b></mat-card-title>
                 <mat-card-subtitle><b>{{conferencia.theme}} By: {{conferencia.organizator}}</b></mat-card-subtitle>
                 <mat-card-content>{{conferencia.description}}<br><br>

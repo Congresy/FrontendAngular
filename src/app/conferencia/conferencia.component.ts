@@ -2,7 +2,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { ConferenciaService, Conferencia, Place } from './conferencia.service';
 import { Router, ActivatedRoute } from '@angular/router';
-import { DomSanitizer} from '@angular/platform-browser'
+import { DomSanitizer } from '@angular/platform-browser'
 
 @Component({
   selector: 'app-conference-simple',
@@ -10,7 +10,7 @@ import { DomSanitizer} from '@angular/platform-browser'
   styleUrls: ['./conferencia.component.css']
 })
 export class ConferenciaComponent implements OnInit {
-
+  role: string;
   conferencias: Conferencia[];
   @Input() conferencia: JSON;
   constructor(public conferenciaService: ConferenciaService, public router: Router
@@ -19,8 +19,9 @@ export class ConferenciaComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.role = sessionStorage.getItem('role');
     this.getConferencias();
-    console.log(this.conferencias)
+    console.log(this.conferencias);
   }
 
   getConferencias(): void {
@@ -37,10 +38,10 @@ export class ConferenciaComponent implements OnInit {
     this.router.navigate(['/conferencia/', conferencia.id]);
   }
 
-deleteConf(id: string){
-  this.conferenciaService.deleteConf(id).subscribe(res => this.ngOnInit());
-  //this.router.navigate(["/conferencias"]);
-}
+  deleteConf(id: string) {
+    this.conferenciaService.deleteConf(id).subscribe(res => this.ngOnInit());
+    //this.router.navigate(["/conferencias"]);
+  }
 }
 
 
@@ -80,15 +81,15 @@ export class ConferenciaDetailedComponent implements OnInit {
       this.id = params['id'];
     });
     this.conferenciaService.getConf(this.id).subscribe(data => {
-    this.conferencia = data;
-    this.conferenciaService.getPlace(data.place).subscribe(data => this.place = data);
+      this.conferencia = data;
+      this.conferenciaService.getPlace(data.place).subscribe(data => this.place = data);
     });
-    
+
   }
 
-  getGoogleURL(){
-    console.log(this.place.address.replace("C/","").replace(" ","+")+","+this.place.town+","+this.place.country);
-    return this.sanitizer.bypassSecurityTrustResourceUrl("https://www.google.com/maps/embed/v1/place?key=AIzaSyD98Q94QW9WHOR5L-pbGY-EcZCAkoyLRHE&q="+this.place.address.replace("C/","")+","+this.place.town+","+this.place.country);
+  getGoogleURL() {
+    console.log(this.place.address.replace("C/", "").replace(" ", "+") + "," + this.place.town + "," + this.place.country);
+    return this.sanitizer.bypassSecurityTrustResourceUrl("https://www.google.com/maps/embed/v1/place?key=AIzaSyD98Q94QW9WHOR5L-pbGY-EcZCAkoyLRHE&q=" + this.place.address.replace("C/", "") + "," + this.place.town + "," + this.place.country);
   }
 
 }

@@ -28,19 +28,23 @@ const routes: Routes = [
     },
     {
         path: 'conferencia/:id',
-        component: ConferenciaDetailedComponent
+        component: ConferenciaDetailedComponent,
+        canActivate: [AuthGuardService]
     },
     {
         path: 'profile',
-        component: ProfileComponent
+        component: ProfileComponent,
+        canActivate: [AuthGuardService]
     },
     {
         path: 'conferencia-create',
-        component: CreateConferenciaComponent
+        component: CreateConferenciaComponent,
+        canActivate: [AuthGuardService]
     },
     {
         path: 'event-create',
-        component: EventFormComponent
+        component: EventFormComponent,
+        canActivate: [AuthGuardService]
     }
 ];
 @NgModule({

@@ -1,12 +1,25 @@
-<div class="conf-detailed">
-    <h1>{{conferencia.name}}</h1>
-    <label>Precio: </label>{{conferencia.price}} €<br>
-    <label>Cupos: </label>{{conferencia.allowedParticipants}}<br>
-    <label>Inicio: </label>{{conferencia.start}}<br>
-    <label>Fin: </label>{{conferencia.end}}<br>
-    <label>Ubicación: </label>{{place.address}}<br>
+<div class="content">
+    <mat-card>
+        <mat-card-header>
+            <mat-card-title>
+                <h1>{{conferencia.name}}</h1>
+            </mat-card-title>
+            <mat-card-subtitle>{{conferencia.theme}}</mat-card-subtitle>
 
-    <iframe width="500" height="350" frameborder="0" style="border:0" [src]="getGoogleURL()" allowfullscreen>
-    </iframe>
+        </mat-card-header>
+        <iframe width="500" height="350" frameborder="0" style="border:0; float: right;" [src]="getGoogleURL()"
+            allowfullscreen>
+        </iframe>
+        <mat-card-content>
+            <h2>{{conferencia.description}}</h2>
+            {{conferencia.price}} €<br>
+            <label>Cupos: </label>{{conferencia.allowedParticipants}}<br>
+            <label>Inicio: </label>{{conferencia.start}}<br>
+            <label>Fin: </label>{{conferencia.end}}<br>
+            <label>Ubicación: </label>{{place.address}}<br>
 
-    <app-list-event [conf]='id'></app-list-event>
+
+        </mat-card-content>
+        <app-list-event [conf]='id'></app-list-event>
+    </mat-card>
+</div>

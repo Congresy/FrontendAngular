@@ -11,14 +11,17 @@ export class HomeComponent implements OnInit {
 
     confsNum: number;
     usersNum: number;
-
+    users: Map<String, String> = new Map();
     constructor(private userService: UsersService, private conferenciaService: ConferenciaService) {
     }
 
     ngOnInit() {
-        this.conferenciaService.getConferencias().subscribe(confs => { this.confsNum = confs.length;
-        this.userService.getUsers().subscribe(users => this.usersNum = users.length); });
+        this.conferenciaService.getConferencias().subscribe(confs => {
+            this.confsNum = confs.length;
+            this.userService.getUsers().subscribe(users => this.usersNum = users.length);
+        });
+        this.userService.getUsers().subscribe(data => data.forEach(x => this.users.set(x.id, x.name)));
+        console.log('USERS: ' + this.users);
     }
-
-
 }
+
