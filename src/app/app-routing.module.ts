@@ -1,11 +1,21 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
-import { HomeComponent } from './home/home.component';
-import { LoginComponent } from './login/login.component';
-import { ConferenciaComponent, ConferenciaDetailedComponent, CreateConferenciaComponent } from './conferencia/conferencia.component';
-import { UserComponent, ProfileComponent } from './user/user.component';
+import {
+    Routes,
+    RouterModule
+} from '@angular/router';
+import { HomeComponent } from './components/home/home.component';
+import { LoginComponent } from './components/login/login.component';
+import {
+    ConferenciaComponent,
+    ConferenciaDetailedComponent,
+    CreateConferenciaComponent
+} from './components/conferencia/conferencia.component';
+import {
+    UserComponent,
+    ProfileComponent
+} from './user/user.component';
 import { AuthGuardService } from './services/auth-guard.service';
-import { EventFormComponent } from './event/form/event-form.component';
+import { EventFormComponent } from './components/event/form/event-form.component';
 
 const routes: Routes = [
     {
@@ -19,6 +29,11 @@ const routes: Routes = [
     },
     {
         path: 'conferencias',
+        component: ConferenciaComponent,
+        canActivate: [AuthGuardService]
+    },
+    {
+        path: 'conferencias/:own',
         component: ConferenciaComponent,
         canActivate: [AuthGuardService]
     },

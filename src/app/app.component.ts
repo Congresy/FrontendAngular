@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { ConferenciaService } from './conferencia/conferencia.service';
 
 @Component({
   selector: 'app-root',
@@ -9,9 +8,7 @@ import { ConferenciaService } from './conferencia/conferencia.service';
 export class AppComponent implements OnInit {
 
 
-  constructor(
-    public conferenciaService: ConferenciaService
-  ) {
+  constructor() {
   }
   ngOnInit() {
   }

@@ -1,5 +1,5 @@
 <h3>EVENTOS</h3>
 <a routerLink="/event-create">Crear evento</a>
 <ul *ngFor="let evento of eventos">
-    {{evento.name}}
+    {{evento.name}}<button (click)="unirse(evento.id)">UNIRSE</button>
 </ul>

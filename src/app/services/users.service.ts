@@ -3,8 +3,8 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import { catchError, tap } from 'rxjs/operators';
 import { of } from 'rxjs/observable/of';
-import { Routes } from '@angular/router';
 import { Subject } from 'rxjs/Subject';
+import { ConferenceService } from './conference.service';
 
 @Injectable()
 export class UsersService {
@@ -14,7 +14,7 @@ export class UsersService {
     user: JSON;
     base_url = 'https://congresy.herokuapp.com/actors/';
 
-    constructor(private http: HttpClient) { }
+    constructor(private http: HttpClient, private cs: ConferenceService) { }
 
     // REGISTRAR USUARIO
     registerUser(body) {
@@ -49,8 +49,8 @@ export class UsersService {
     getUser(name: string): Observable<User> {
         const url = 'https://congresy.herokuapp.com/actors/username/' + name;
         return this.http.get<any>(url).pipe(
-            tap(data => this.log(`fetched Organizator id=${name}`)),
-            catchError(this.handleError<any>(`getOrganizator id=${name}`))
+            tap(data => this.log(`fetched user id=${name}`)),
+            catchError(this.handleError<any>(`getUser id=${name}`))
         );
     }
 

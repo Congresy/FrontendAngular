@@ -1,0 +1,12 @@
+<header>
+    <div class="header">
+        <button *ngIf="!role" mat-stroked-button routerLink='register'>Register</button>
+        <button mat-stroked-button *ngIf="!role" routerLink="login">Login</button>
+        <button mat-stroked-button [matMenuTriggerFor]="menuconf">Conferencias</button>
+        <mat-menu #menuconf="matMenu">
+            <button mat-menu-item routerLink="conferencias">Ver todas</button>
+            <button mat-menu-item routerLink="conferencias/own">Mis conferencias</button>
+        </mat-menu>
+        <button mat-stroked-button routerLink="profile">Perfil</button>
+    </div>
+</header>

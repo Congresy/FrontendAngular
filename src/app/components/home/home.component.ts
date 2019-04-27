@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { UsersService, User } from '../services/users.service';
-import { ConferenciaService } from '../conferencia/conferencia.service';
+import { UsersService, User } from '../../services/users.service';
+import { ConferenceService } from '../../services/conference.service';
 
 @Component({
     selector: 'app-home',
@@ -12,7 +12,7 @@ export class HomeComponent implements OnInit {
     confsNum: number;
     usersNum: number;
     users: Map<String, String> = new Map();
-    constructor(private userService: UsersService, private conferenciaService: ConferenciaService) {
+    constructor(private userService: UsersService, private conferenciaService: ConferenceService) {
     }
 
     ngOnInit() {
