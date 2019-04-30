@@ -23,6 +23,9 @@ export class EventFormComponent implements OnInit {
 
   createFormGroupWithBuilderAndModel(formBuilder: FormBuilder) {
     return formBuilder.group(new NewEvento());
+    // return formBuilder.group({
+    //   'name': ['']
+    // });
   }
 
   onSubmit() {

@@ -1,12 +1,23 @@
 <form style="margin-top: 150px;" [formGroup]="eventForm" (ngSubmit)="onSubmit()" novalidate>
-    <mat-form-field><input matInput formControlName="name" type="text" placeholder="Nombre" required></mat-form-field>
+    <mat-form-field><input matInput formControlName="name" type="text" placeholder="Nombre" required>
+    </mat-form-field>
+    <div *ngIf="eventForm.controls['name'].errors && !eventForm.controls['name'].pristine">
+        <div [hidden]="!eventForm.controls['name'].errors.required">Name is required.</div>
+    </div>
     <mat-form-field><input matInput formControlName="description" type="text" placeholder="Descripción" required>
     </mat-form-field>
+    <div *ngIf="eventForm.controls['description'].errors && !eventForm.controls['description'].pristine">
+        <div [hidden]="!eventForm.controls['description'].errors.required">Description is required.</div>
+    </div>
     <mat-form-field><input matInput formControlName="allowedParticipants" type="number" min="0" placeholder="Cupos"
             required></mat-form-field>
     <mat-form-field><input matInput formControlName="speakers" type="text" placeholder="Ponentes" required>
     </mat-form-field>
     <mat-form-field><input matInput formControlName="start" type="date" placeholder="Inicio" required></mat-form-field>
+    <div *ngIf="eventForm.controls['start'].errors && !eventForm.controls['start'].pristine">
+        <div [hidden]="!eventForm.controls['start'].errors.required">Formato de fecha inválido.</div>
+    </div>
     <mat-form-field><input matInput formControlName="end" type="date" placeholder="Fin" required></mat-form-field>
     <button type="submit" [disabled]="eventForm.pristine">Save</button>
+
 </form>

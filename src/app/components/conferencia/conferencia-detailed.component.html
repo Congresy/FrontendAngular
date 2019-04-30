@@ -15,7 +15,7 @@
             <label>Cupos: </label>{{conferencia.allowedParticipants}}<br>
             <label>Inicio: </label>{{conferencia.start}}<br>
             <label>Fin: </label>{{conferencia.end}}<br>
-            <label>Ubicación: </label>{{place.address}}<br>
+            <label>Ubicación: </label>{{conferencia.address}}<br>
             <label>Sitios libres: </label>{{ conferencia.seatsLeft}}
         </mat-card-content>
         <app-list-event [conf]='id'></app-list-event>

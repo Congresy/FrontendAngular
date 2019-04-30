@@ -14,7 +14,7 @@ import { Place } from '../../models/Place';
 })
 export class ConferenciaComponent implements OnInit {
   role: string;
-  conferencias: Conferencia[];
+  conferencias: Conferencia[] = [];
   id: string;
   @Input() conferencia: JSON;
   constructor(public router: Router, private cs: ConferenceService
@@ -31,26 +31,27 @@ export class ConferenciaComponent implements OnInit {
         this.getConferencias();
       }
     });
-    console.log(this.conferencias);
   }
 
   getMyConfs() {
-    this.conferencias = this.cs.getMyConferences(sessionStorage.getItem('userId'));
+    this.cs.fetchMyConferences(sessionStorage.getItem('userId')).subscribe(data => {
+      for (let i = 0; i < Object.keys(data).length; i++) { this.conferencias.push(data[i]); }
+    });
   }
 
   getConferencias(): void {
     this.cs.getConferencias()
       .subscribe(conferencias => {
         for (let _i = 0; _i < conferencias.length; _i++) {
-          this.cs.getOrganizator(conferencias[_i].$organizator)
-            .subscribe(data => conferencias[_i].$organizator = data.$name + ' ' + data.$surname);
+          this.cs.getOrganizator(conferencias[_i].organizator)
+            .subscribe(data => conferencias[_i].organizator = data.name + ' ' + data.surname);
         }
         this.conferencias = conferencias;
       });
   }
 
   viewConf(conferencia: Conferencia) {
-    this.router.navigate(['/conferencia/', conferencia.$id]);
+    this.router.navigate(['/conferencia/', conferencia.id]);
   }
 
   deleteConf(id: string) {
@@ -99,17 +100,25 @@ export class ConferenciaDetailedComponent implements OnInit {
     this.activatedRoute.params.subscribe(params => {
       this.id = params['id'];
     });
-    this.conferenciaService.getConf(this.id).subscribe(data => {
+    this.conferenciaService.getConf(this.id).subscribe(async data => {
       this.conferencia = data;
-      this.conferenciaService.getPlace(data.$place).subscribe(data => this.place = data);
+      await sleep(4000);
+      this.conferenciaService.getPlace(data.place).subscribe(place => {
+        this.place = place;
+        console.log(place);
+      });
     });
 
   }
 
   getGoogleURL() {
-    console.log(this.place.$address.replace('C/', '').replace(' ', '+') + ',' + this.place.$town + ',' + this.place.$country);
+    console.log(this.place.address.replace('C/', '').replace(' ', '+') + ',' + this.place.town + ',' + this.place.country);
     return this.sanitizer
       .bypassSecurityTrustResourceUrl('https://www.google.com/maps/embed/v1/place?key=AIzaSyD98Q94QW9WHOR5L-pbGY-EcZCAkoyLRHE&q=' +
-        this.place.$address.replace('C/', '') + ',' + this.place.$town + ',' + this.place.$country);
+        this.place.address.replace('C/', '') + ',' + this.place.town + ',' + this.place.country);
   }
+
+}
+function sleep(ms = 0) {
+  return new Promise(r => setTimeout(r, ms));
 }

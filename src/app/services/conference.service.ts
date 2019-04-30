@@ -11,7 +11,7 @@ const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/js
 
 @Injectable()
 export class ConferenceService {
-  conferencias: Conferencia[];
+  public conferencias: Conferencia[];
   id: string;
 
   // del antiguo servicio
@@ -21,13 +21,12 @@ export class ConferenceService {
   private placeUrl = 'https://congresy.herokuapp.com/places/';
   constructor(private http: HttpClient) { }
 
-  getMyConferences(id: string): Conferencia[] {
-    this.http.get('https://congresy.herokuapp.com/conferences/own/' + id + '?value=upcoming')
-      .subscribe(data => {
-        console.log(data);
-      });
-    return this.conferencias;
+  fetchMyConferences(id: string) {
+    return this.http.get('https://congresy.herokuapp.com/conferences/own/' + id + '?value=upcoming');
   }
+  // getMyConferences(id: string): Observable<Object> {
+  //   return this.http.get('https://congresy.herokuapp.com/conferences/own/' + id + '?value=upcoming');
+  // }
 
   getUserId(): string {
     this.http.get('https://congresy.herokuapp.com/actors/search/' + localStorage.getItem('user'),
@@ -71,6 +70,7 @@ export class ConferenceService {
   }
 
   getPlace(id: string): Observable<Place> {
+    console.log('IDIDID: ' + id);
     return this.http.get<any>(this.placeUrl + id, { headers: new HttpHeaders({ 'Accept': 'application/json' }) })
       .pipe(
         tap(places => this.log(`fetched place`)),
@@ -78,21 +78,20 @@ export class ConferenceService {
       );
   }
 
-  // TODO eliminar objeto conferencia
   createConference(conference: Conferencia): Observable<Conferencia> {
     const conf = {
-      'name': conference.$name,
-      'organizator': conference.$organizator,
-      'theme': conference.$theme,
-      'allowedParticipants': conference.$allowedParticipants,
-      'price': Number(conference.$price),
-      'start': conference.$start,
-      'end': conference.$end,
-      'speakersNames': conference.$speakersNames
+      'name': conference.name,
+      'organizator': conference.organizator,
+      'theme': conference.theme,
+      'allowedParticipants': conference.allowedParticipants,
+      'price': Number(conference.price),
+      'start': conference.start,
+      'end': conference.end,
+      'speakersNames': conference.speakersNames
     };
     console.log(conf);
     return this.http.post<Conferencia>(this.createConferenceUrl, conference, httpOptions).pipe(
-      tap((confe: Conferencia) => this.log(`added Conference w/ id=${confe.$id}`)),
+      tap((confe: Conferencia) => this.log(`added Conference w/ id=${confe.id}`)),
       catchError(this.handleError<Conferencia>('createConference'))
     );
   }
