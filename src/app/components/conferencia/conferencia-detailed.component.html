@@ -18,6 +18,6 @@
             <label>Ubicación: </label>{{conferencia.address}}<br>
             <label>Sitios libres: </label>{{ conferencia.seatsLeft}}
         </mat-card-content>
-        <app-list-event [conf]='id'></app-list-event>
+        <app-list-event [conf]='id' [own]='own'></app-list-event>
     </mat-card>
 </div>

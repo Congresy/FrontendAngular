@@ -8,7 +8,6 @@ import { LoginComponent } from './components/login/login.component';
 import {
     ConferenciaComponent,
     ConferenciaDetailedComponent,
-    CreateConferenciaComponent
 } from './components/conferencia/conferencia.component';
 import {
     UserComponent,
@@ -16,6 +15,7 @@ import {
 } from './user/user.component';
 import { AuthGuardService } from './services/auth-guard.service';
 import { EventFormComponent } from './components/event/form/event-form.component';
+import { ConferenciaFormComponent } from './components/conferencia/form/conferencia-form.component';
 
 const routes: Routes = [
     {
@@ -52,8 +52,8 @@ const routes: Routes = [
         canActivate: [AuthGuardService]
     },
     {
-        path: 'conferencia-create',
-        component: CreateConferenciaComponent,
+        path: 'conferencia-form',
+        component: ConferenciaFormComponent,
         canActivate: [AuthGuardService]
     },
     {

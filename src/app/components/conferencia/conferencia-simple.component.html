@@ -1,5 +1,5 @@
 <div class="content">
-    <a *ngIf="role == 'Organizator'" routerLink='/conferencia-create'>Crear conferencia</a>
+    <a *ngIf="role == 'Organizator'" routerLink='/conferencia-form'>Crear conferencia</a>
     <ul *ngFor="let conferencia of conferencias">
         <div class="conferencia-style">
             <mat-card class="simple">
@@ -12,5 +12,4 @@
             </mat-card>
         </div>
     </ul>
-    <button (click)="test()">TEST</button>
 </div>

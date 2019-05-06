@@ -6,6 +6,7 @@ import { catchError, tap } from 'rxjs/operators';
 import { Actor } from '../models/Actor';
 import { Place } from '../models/Place';
 import { of } from 'rxjs/observable/of';
+import { FormBuilder, Validators, FormGroup } from '@angular/forms';
 
 const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) };
 
@@ -19,7 +20,7 @@ export class ConferenceService {
   private createConferenceUrl = 'https://congresy.herokuapp.com/conferences';
   private organizatorUrl = 'https://congresy.herokuapp.com/actors/';
   private placeUrl = 'https://congresy.herokuapp.com/places/';
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient, private fb: FormBuilder) { }
 
   fetchMyConferences(id: string) {
     return this.http.get('https://congresy.herokuapp.com/conferences/own/' + id + '?value=upcoming');
@@ -37,16 +38,9 @@ export class ConferenceService {
     return this.id;
   }
 
-  joinEvent(idEvent: string) {
-    this.getUserId();
-    console.log(this.id);
-    this.http.put('https://congresy.herokuapp.com/events/add/' + idEvent + '/participants/' + this.id,
-      { headers: 'Accept: application/json' }).subscribe();
-  }
-
   // del antiguo servicio
 
-  getConferencias(): Observable<Array<Conferencia>> {
+  getAll(): Observable<Array<Conferencia>> {
     return this.http.get<Conferencia[]>(this.conferencesUrl, { headers: httpOptions.headers })
       .pipe(
         tap(conferences => this.log(`fetched conferences`)),
@@ -78,28 +72,44 @@ export class ConferenceService {
       );
   }
 
-  createConference(conference: Conferencia): Observable<Conferencia> {
-    const conf = {
-      'name': conference.name,
-      'organizator': conference.organizator,
-      'theme': conference.theme,
-      'allowedParticipants': conference.allowedParticipants,
-      'price': Number(conference.price),
-      'start': conference.start,
-      'end': conference.end,
-      'speakersNames': conference.speakersNames
-    };
-    console.log(conf);
+  create(conference: Conferencia): Observable<Conferencia> {
+    conference.speakersNames = conference.speakersNames.toString();
     return this.http.post<Conferencia>(this.createConferenceUrl, conference, httpOptions).pipe(
       tap((confe: Conferencia) => this.log(`added Conference w/ id=${confe.id}`)),
       catchError(this.handleError<Conferencia>('createConference'))
     );
   }
 
-  deleteConf(id: string) {
+  update(conference: Conferencia): Observable<Conferencia> {
+    return this.http.put<Conferencia>(this.createConferenceUrl + '/' + conference.id, conference, httpOptions);
+  }
+
+  delete(id: string) {
     return this.http.delete(this.conferencesUrl + '/' + id);
   }
 
+  generateForm(): FormGroup {
+    return this.fb.group({
+      conference: this.fb.group({
+        name: ['', Validators.required],
+        theme: ['', Validators.required],
+        organizator: [sessionStorage.getItem('userId')],
+        price: [, Validators.required],
+        allowedParticipants: [, Validators.required],
+        description: ['', Validators.required],
+        speakersNames: ['', Validators.required],
+        start: [, Validators.required],
+        end: [, Validators.required]
+      }),
+      place: this.fb.group({
+        postalCode: ['', Validators.required],
+        address: ['', Validators.required],
+        country: ['', Validators.required],
+        details: ['', Validators.required],
+        town: ['', Validators.required]
+      })
+    });
+  }
   private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
       console.error(error);

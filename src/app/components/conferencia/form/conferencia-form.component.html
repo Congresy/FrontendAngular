@@ -1,0 +1,48 @@
+<form [formGroup]="conferenceForm" (ngSubmit)="onSubmit(conferenceForm.value)" class="content">
+
+
+  <fieldset formGroupName="conference">
+    <legend>Datos de la conferencia</legend>
+    <mat-form-field><input matInput type="text" id="name" placeholder="Nombre" name="name" formControlName="name">
+    </mat-form-field>
+    <mat-form-field><input matInput type="text" id="description" placeholder="Descripción" name="description"
+        formControlName="description"></mat-form-field>
+    <mat-form-field><input matInput type="number" id="price" placeholder="Precio" name="price" formControlName="price">
+    </mat-form-field>
+    <mat-form-field><input matInput type="text" id="theme" placeholder="Tema" name="theme" formControlName="theme">
+    </mat-form-field>
+    <mat-form-field><input matInput type="number" id="allowedParticipants" placeholder="Cupos"
+        name="allowedParticipants" formControlName="allowedParticipants"></mat-form-field>
+    <mat-form-field><input matInput type="text" id="start" placeholder="Inicio" name="start" formControlName="start">
+    </mat-form-field>
+    <mat-form-field><input matInput type="text" id="end" placeholder="Fin" name="end" formControlName="end">
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Ponentes</mat-label>
+      <mat-select multiple name="speakersNames" id="speakersNames" formControlName="speakersNames">
+        <mat-option *ngFor="let speaker of speakers" [value]="speaker.name + ' ' + speaker.surname">
+          {{speaker.name +' '+ speaker.surname}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </fieldset>
+  <fieldset formGroupName="place">
+    <legend>Ubicación de la conferencia</legend>
+    <mat-form-field><input matInput type="text" id="postalCode" placeholder="C.P." name="postalCode"
+        formControlName="postalCode"></mat-form-field>
+    <mat-form-field><input matInput type="text" id="address" placeholder="Dirección" name="address"
+        formControlName="address">
+    </mat-form-field>
+    <mat-form-field><input matInput type="text" id="town" placeholder="Ciudad" name="town" formControlName="town">
+    </mat-form-field>
+    <mat-form-field><input matInput type="text" id="country" placeholder="Pais" name="country"
+        formControlName="country">
+    </mat-form-field>
+    <mat-form-field><input matInput type="text" id="details" placeholder="Detalles" name="details"
+        formControlName="details">
+    </mat-form-field>
+  </fieldset>
+
+
+  <button type="submit">Submit</button>
+</form>

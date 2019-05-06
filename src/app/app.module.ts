@@ -8,7 +8,6 @@ import {
 import { AppComponent } from './app.component';
 import {
     ConferenciaComponent,
-    CreateConferenciaComponent,
     ConferenciaDetailedComponent
 } from './components/conferencia/conferencia.component';
 import { LoginComponent } from './components/login/login.component';
@@ -18,7 +17,8 @@ import {
     MatCardModule,
     MatFormFieldModule,
     MatInputModule,
-    MatMenuModule
+    MatMenuModule,
+    MatSelectModule
 } from '@angular/material';
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
@@ -34,17 +34,19 @@ import { EventFormComponent } from './components/event/form/event-form.component
 import { DatePipe } from '@angular/common';
 import { MyeventsComponent } from './components/event/myevents/myevents.component';
 import { ConferenceService } from './services/conference.service';
+import { ConferenciaFormComponent } from './components/conferencia/form/conferencia-form.component';
 
 
 @NgModule({
     imports: [BrowserModule, FormsModule, ReactiveFormsModule,
         HttpClientModule, MatButtonModule,
         MatCheckboxModule, AppRoutingModule, BrowserAnimationsModule,
-        MatCardModule, MatFormFieldModule, MatInputModule, MatMenuModule],
+        MatCardModule, MatFormFieldModule, MatInputModule, MatMenuModule, MatSelectModule],
     declarations: [AppComponent,
-        ConferenciaComponent, LoginComponent, CreateConferenciaComponent,
+        ConferenciaComponent, LoginComponent,
         HeaderComponent, FooterComponent, HomeComponent, UserComponent,
-        ConferenciaDetailedComponent, ProfileComponent, EventComponent, TestComponent, EventFormComponent, MyeventsComponent],
+        ConferenciaDetailedComponent, ProfileComponent, EventComponent,
+        TestComponent, EventFormComponent, MyeventsComponent, ConferenciaFormComponent],
     providers: [UsersService, AuthGuardService, DatePipe, ConferenceService],
     schemas: [CUSTOM_ELEMENTS_SCHEMA],
     bootstrap: [AppComponent]

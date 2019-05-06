@@ -16,7 +16,7 @@ export class HomeComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.conferenciaService.getConferencias().subscribe(confs => {
+        this.conferenciaService.getAll().subscribe(confs => {
             this.confsNum = confs.length;
             this.userService.getUsers().subscribe(users => this.usersNum = users.length);
         });

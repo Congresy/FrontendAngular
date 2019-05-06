@@ -5,6 +5,7 @@ import { catchError, tap } from 'rxjs/operators';
 import { of } from 'rxjs/observable/of';
 import { Subject } from 'rxjs/Subject';
 import { ConferenceService } from './conference.service';
+import { Actor } from '../models/Actor';
 
 @Injectable()
 export class UsersService {
@@ -29,11 +30,12 @@ export class UsersService {
                 error => {
                     this.getUser(username).subscribe(user => this.role$.next(user.role));
                 });
+        this.getUser(username).subscribe(data => sessionStorage.setItem('userId', data.id));
         localStorage.setItem('user', username);
     }
 
-    getUsers(): Observable<Array<any>> {
-        return this.http.get<any[]>(this.base_url, { headers: this.httpOptions.headers })
+    getUsers(): Observable<Array<Actor>> {
+        return this.http.get<Actor[]>(this.base_url, { headers: this.httpOptions.headers })
             .pipe(
                 tap(users => this.log(`fetched users`)),
                 catchError(this.handleError('getUsers', []))

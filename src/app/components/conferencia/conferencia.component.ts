@@ -5,6 +5,8 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { ConferenceService } from '../../services/conference.service';
 import { Conferencia } from '../../models/Conferencia';
 import { Place } from '../../models/Place';
+import { Actor } from '../../models/Actor';
+import { UsersService } from '../../services/users.service';
 
 @Component({
   selector: 'app-conference-simple',
@@ -17,7 +19,7 @@ export class ConferenciaComponent implements OnInit {
   conferencias: Conferencia[] = [];
   id: string;
   @Input() conferencia: JSON;
-  constructor(public router: Router, private cs: ConferenceService
+  constructor(public router: Router, private conferenciaService: ConferenceService
     , private route: ActivatedRoute) {
   }
 
@@ -25,7 +27,7 @@ export class ConferenciaComponent implements OnInit {
     this.role = sessionStorage.getItem('role');
     this.route.params.subscribe(params => {
       if (params['own'] === 'own') {
-        this.cs.getUserId();
+        this.conferenciaService.getUserId();
         this.getMyConfs();
       } else {
         this.getConferencias();
@@ -34,16 +36,22 @@ export class ConferenciaComponent implements OnInit {
   }
 
   getMyConfs() {
-    this.cs.fetchMyConferences(sessionStorage.getItem('userId')).subscribe(data => {
-      for (let i = 0; i < Object.keys(data).length; i++) { this.conferencias.push(data[i]); }
+    this.conferenciaService.fetchMyConferences(sessionStorage.getItem('userId')).subscribe(data => {
+      for (let i = 0; i < Object.keys(data).length; i++) {
+        this.conferencias.push(data[i]);
+      }
+      for (let _i = 0; _i < this.conferencias.length; _i++) {
+        this.conferenciaService.getOrganizator(this.conferencias[_i].organizator)
+          .subscribe(organizator => this.conferencias[_i].organizator = organizator.name + ' ' + organizator.surname);
+      }
     });
   }
 
   getConferencias(): void {
-    this.cs.getConferencias()
+    this.conferenciaService.getAll()
       .subscribe(conferencias => {
         for (let _i = 0; _i < conferencias.length; _i++) {
-          this.cs.getOrganizator(conferencias[_i].organizator)
+          this.conferenciaService.getOrganizator(conferencias[_i].organizator)
             .subscribe(data => conferencias[_i].organizator = data.name + ' ' + data.surname);
         }
         this.conferencias = conferencias;
@@ -55,32 +63,11 @@ export class ConferenciaComponent implements OnInit {
   }
 
   deleteConf(id: string) {
-    this.cs.deleteConf(id).subscribe(res => this.ngOnInit());
+    this.conferenciaService.delete(id).subscribe(res => this.ngOnInit());
+    this.conferencias = [];
     // this.router.navigate(["/conferencias"]);
   }
 
-  test() {
-    this.cs.getUserId();
-  }
-}
-
-
-@Component({
-  selector: 'app-conference-create',
-  templateUrl: './create-conferencia.component.html',
-  styleUrls: ['./conferencia.component.css']
-})
-export class CreateConferenciaComponent {
-  constructor(
-    private conferenciaService: ConferenceService, private router: Router
-  ) {
-  }
-  crearConferencia(conferencia) {
-    this.conferenciaService.createConference(conferencia).subscribe(data => {
-      console.log(data);
-      this.router.navigate(['/conferencias',]);
-    });
-  }
 }
 
 @Component({
@@ -93,6 +80,7 @@ export class ConferenciaDetailedComponent implements OnInit {
   conferencia: Conferencia;
   place: Place;
   place_id: string;
+  own: boolean;
   constructor(public conferenciaService: ConferenceService, private activatedRoute: ActivatedRoute, private sanitizer: DomSanitizer) {
   }
 
@@ -103,12 +91,13 @@ export class ConferenciaDetailedComponent implements OnInit {
     this.conferenciaService.getConf(this.id).subscribe(async data => {
       this.conferencia = data;
       await sleep(4000);
+      this.own = sessionStorage.getItem('userId') === this.conferencia.organizator;
+      console.log(this.own);
       this.conferenciaService.getPlace(data.place).subscribe(place => {
         this.place = place;
         console.log(place);
       });
     });
-
   }
 
   getGoogleURL() {
