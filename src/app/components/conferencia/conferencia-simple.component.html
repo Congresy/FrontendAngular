@@ -8,7 +8,9 @@
                 <mat-card-content>{{conferencia.description}}<br><br>
                 </mat-card-content>
                 <mat-card-action><button mat-button [routerLink]="['/conferencia', conferencia.id]">Ver más</button>
-                    <button mat-button (click)="deleteConf(conferencia.id)">Borrar</button></mat-card-action>
+                    <button *ngIf="own" mat-button [routerLink]="['/conferencia-edit', conferencia.id]">Editar</button>
+                    <button *ngIf="own" mat-button (click)="deleteConf(conferencia.id)">Borrar</button>
+                </mat-card-action>
             </mat-card>
         </div>
     </ul>

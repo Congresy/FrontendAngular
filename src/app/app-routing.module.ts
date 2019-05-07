@@ -57,6 +57,11 @@ const routes: Routes = [
         canActivate: [AuthGuardService]
     },
     {
+        path: 'conferencia-edit/:id',
+        component: ConferenciaFormComponent,
+        canActivate: [AuthGuardService]
+    },
+    {
         path: 'event-create',
         component: EventFormComponent,
         canActivate: [AuthGuardService]

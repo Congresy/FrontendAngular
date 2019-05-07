@@ -14,4 +14,12 @@ export class PlaceService {
   create(place: Place, id: String): Observable<Place> {
     return this.http.post<Place>('https://congresy.herokuapp.com/places/' + id, place, httpOptions);
   }
+
+  update(place: Place): Observable<Place> {
+    return this.http.put<Place>('https://congresy.herokuapp.com/places/' + place.id, place, httpOptions);
+  }
+
+  getOneById(id: string): Observable<Place> {
+    return this.http.get<Place>('https://congresy.herokuapp.com/places/' + id, httpOptions);
+  }
 }

@@ -3,6 +3,7 @@
 
   <fieldset formGroupName="conference">
     <legend>Datos de la conferencia</legend>
+    <input *ngIf='conference_id' formControlName='id' hidden name="id" id="id">
     <mat-form-field><input matInput type="text" id="name" placeholder="Nombre" name="name" formControlName="name">
     </mat-form-field>
     <mat-form-field><input matInput type="text" id="description" placeholder="Descripción" name="description"
@@ -24,10 +25,14 @@
           {{speaker.name +' '+ speaker.surname}}
         </mat-option>
       </mat-select>
-    </mat-form-field>
+    </mat-form-field><br>
+    <div *ngIf='conference_id'>
+      Speakers actuales: {{conferencia.speakersNames}}
+    </div>
   </fieldset>
   <fieldset formGroupName="place">
     <legend>Ubicación de la conferencia</legend>
+    <input *ngIf='conference_id' formControlName='id' hidden name="id" id="id">
     <mat-form-field><input matInput type="text" id="postalCode" placeholder="C.P." name="postalCode"
         formControlName="postalCode"></mat-form-field>
     <mat-form-field><input matInput type="text" id="address" placeholder="Dirección" name="address"

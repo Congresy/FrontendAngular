@@ -13,5 +13,6 @@ export class Conferencia {
   public id: string;
   public place: string;
   public participants: Array<String>;
+  public seatsLeft: number;
 
 }

@@ -7,6 +7,7 @@ import { Actor } from '../models/Actor';
 import { Place } from '../models/Place';
 import { of } from 'rxjs/observable/of';
 import { FormBuilder, Validators, FormGroup } from '@angular/forms';
+import { PlaceService } from './place.service';
 
 const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/json' }) };
 
@@ -14,13 +15,14 @@ const httpOptions = { headers: new HttpHeaders({ 'Content-Type': 'application/js
 export class ConferenceService {
   public conferencias: Conferencia[];
   id: string;
+  place: Place;
 
   // del antiguo servicio
   private conferencesUrl = 'https://congresy.herokuapp.com/conferences';
   private createConferenceUrl = 'https://congresy.herokuapp.com/conferences';
   private organizatorUrl = 'https://congresy.herokuapp.com/actors/';
   private placeUrl = 'https://congresy.herokuapp.com/places/';
-  constructor(private http: HttpClient, private fb: FormBuilder) { }
+  constructor(private http: HttpClient, private fb: FormBuilder, private placeService: PlaceService) { }
 
   fetchMyConferences(id: string) {
     return this.http.get('https://congresy.herokuapp.com/conferences/own/' + id + '?value=upcoming');
@@ -74,6 +76,7 @@ export class ConferenceService {
 
   create(conference: Conferencia): Observable<Conferencia> {
     conference.speakersNames = conference.speakersNames.toString();
+    conference.seatsLeft = conference.allowedParticipants;
     return this.http.post<Conferencia>(this.createConferenceUrl, conference, httpOptions).pipe(
       tap((confe: Conferencia) => this.log(`added Conference w/ id=${confe.id}`)),
       catchError(this.handleError<Conferencia>('createConference'))
@@ -81,6 +84,7 @@ export class ConferenceService {
   }
 
   update(conference: Conferencia): Observable<Conferencia> {
+    conference.speakersNames = conference.speakersNames.toString();
     return this.http.put<Conferencia>(this.createConferenceUrl + '/' + conference.id, conference, httpOptions);
   }
 
@@ -99,7 +103,7 @@ export class ConferenceService {
         description: ['', Validators.required],
         speakersNames: ['', Validators.required],
         start: [, Validators.required],
-        end: [, Validators.required]
+        end: [, Validators.required],
       }),
       place: this.fb.group({
         postalCode: ['', Validators.required],
@@ -110,6 +114,31 @@ export class ConferenceService {
       })
     });
   }
+
+  generateEditForm(conferencia: Conferencia, place: Place): FormGroup {
+    return this.fb.group({
+      conference: this.fb.group({
+        name: [conferencia.name, Validators.required],
+        theme: [conferencia.theme, Validators.required],
+        price: [conferencia.price, Validators.required],
+        allowedParticipants: [conferencia.allowedParticipants, Validators.required],
+        description: [conferencia.description, Validators.required],
+        speakersNames: ['', Validators.required],
+        start: [conferencia.start, Validators.required],
+        end: [conferencia.end, Validators.required],
+        id: [conferencia.id]
+      }),
+      place: this.fb.group({
+        postalCode: [place.postalCode, Validators.required],
+        address: [place.address, Validators.required],
+        country: [place.country, Validators.required],
+        details: [place.details, Validators.required],
+        town: [place.town, Validators.required],
+        id: [place.id]
+      })
+    });
+  }
+
   private handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
       console.error(error);
@@ -121,5 +150,6 @@ export class ConferenceService {
     console.log('ConferenceService: ' + message);
   }
 }
+
 
 

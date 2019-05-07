@@ -35,6 +35,7 @@ import { DatePipe } from '@angular/common';
 import { MyeventsComponent } from './components/event/myevents/myevents.component';
 import { ConferenceService } from './services/conference.service';
 import { ConferenciaFormComponent } from './components/conferencia/form/conferencia-form.component';
+import { PlaceService } from './services/place.service';
 
 
 @NgModule({
@@ -47,7 +48,7 @@ import { ConferenciaFormComponent } from './components/conferencia/form/conferen
         HeaderComponent, FooterComponent, HomeComponent, UserComponent,
         ConferenciaDetailedComponent, ProfileComponent, EventComponent,
         TestComponent, EventFormComponent, MyeventsComponent, ConferenciaFormComponent],
-    providers: [UsersService, AuthGuardService, DatePipe, ConferenceService],
+    providers: [UsersService, AuthGuardService, DatePipe, ConferenceService, PlaceService],
     schemas: [CUSTOM_ELEMENTS_SCHEMA],
     bootstrap: [AppComponent]
 })
