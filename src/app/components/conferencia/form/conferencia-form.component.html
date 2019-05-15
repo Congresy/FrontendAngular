@@ -1,10 +1,12 @@
-<form [formGroup]="conferenceForm" (ngSubmit)="onSubmit(conferenceForm.value)" class="content">
+<form #confForm="ngForm" [formGroup]="conferenceForm" (ngSubmit)="onSubmit(confForm.value)" class="content">
 
 
   <fieldset formGroupName="conference">
     <legend>Datos de la conferencia</legend>
     <input *ngIf='conference_id' formControlName='id' hidden name="id" id="id">
-    <mat-form-field><input matInput type="text" id="name" placeholder="Nombre" name="name" formControlName="name">
+    <input *ngIf='conference_id' formControlName='organizator' hidden name="organizator" id="organizator">
+    <mat-form-field><input matInput [value]="confName" formControlName="name" type="text" id="name" placeholder="Nombre"
+        name="name">
     </mat-form-field>
     <mat-form-field><input matInput type="text" id="description" placeholder="Descripción" name="description"
         formControlName="description"></mat-form-field>

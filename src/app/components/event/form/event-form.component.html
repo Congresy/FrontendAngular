@@ -1,13 +1,15 @@
 <form style="margin-top: 150px;" [formGroup]="eventForm" (ngSubmit)="onSubmit()" novalidate>
     <fieldset formGroupName="event">
         <legend>Datos del evento</legend>
+        <input *ngIf="!new" hidden name="id" id="id" formControlName="id">
+        <input *ngIf="!new" hidden name="conference" id="conference" formControlName="conference">
         <mat-form-field><input matInput formControlName="name" type="text" placeholder="Nombre" required>
         </mat-form-field>
         <mat-form-field><input matInput formControlName="description" type="text" placeholder="Descripción" required>
         </mat-form-field>
         <mat-form-field><input matInput formControlName="allowedParticipants" type="number" min="0" placeholder="Cupos"
                 required></mat-form-field>
-        <mat-form-field><input matInput formControlName="speakersNames" type="text" placeholder="Ponentes" required>
+        <mat-form-field><input matInput formControlName="speakers" type="text" placeholder="Ponentes" required>
         </mat-form-field>
         <mat-form-field><input matInput formControlName="start" type="date" placeholder="Inicio" required>
         </mat-form-field>
@@ -21,6 +23,24 @@
             </mat-select>
         </mat-form-field>
     </fieldset>
+    <fieldset formGroupName="place">
+        <legend>Ubicación del evento</legend>
+        <input *ngIf="!new" hidden name="id" id="id" formControlName="id">
+        <mat-form-field><input matInput type="text" id="postalCode" placeholder="C.P." name="postalCode"
+                formControlName="postalCode"></mat-form-field>
+        <mat-form-field><input matInput type="text" id="address" placeholder="Dirección" name="address"
+                formControlName="address">
+        </mat-form-field>
+        <mat-form-field><input matInput type="text" id="town" placeholder="Ciudad" name="town" formControlName="town">
+        </mat-form-field>
+        <mat-form-field><input matInput type="text" id="country" placeholder="Pais" name="country"
+                formControlName="country">
+        </mat-form-field>
+        <mat-form-field><input matInput type="text" id="details" placeholder="Detalles" name="details"
+                formControlName="details">
+        </mat-form-field>
+    </fieldset>
+
     <button type="submit" [disabled]="eventForm.pristine">Save</button>
 
 </form>

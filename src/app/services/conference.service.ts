@@ -116,9 +116,9 @@ export class ConferenceService {
   }
 
   generateEditForm(conferencia: Conferencia, place: Place): FormGroup {
+    const name = conferencia.name;
     return this.fb.group({
       conference: this.fb.group({
-        name: [conferencia.name, Validators.required],
         theme: [conferencia.theme, Validators.required],
         price: [conferencia.price, Validators.required],
         allowedParticipants: [conferencia.allowedParticipants, Validators.required],
@@ -126,7 +126,9 @@ export class ConferenceService {
         speakersNames: ['', Validators.required],
         start: [conferencia.start, Validators.required],
         end: [conferencia.end, Validators.required],
-        id: [conferencia.id]
+        id: [conferencia.id],
+        name: [name, Validators.required],
+        organizator: [sessionStorage.getItem('userId')],
       }),
       place: this.fb.group({
         postalCode: [place.postalCode, Validators.required],

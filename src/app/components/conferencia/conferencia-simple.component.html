@@ -9,7 +9,7 @@
                 </mat-card-content>
                 <mat-card-action><button mat-button [routerLink]="['/conferencia', conferencia.id]">Ver más</button>
                     <button *ngIf="own" mat-button [routerLink]="['/conferencia-edit', conferencia.id]">Editar</button>
-                    <button *ngIf="own" mat-button (click)="deleteConf(conferencia.id)">Borrar</button>
+                    <button *ngIf="own" mat-button (click)="delete(conferencia.id)">Borrar</button>
                 </mat-card-action>
             </mat-card>
         </div>

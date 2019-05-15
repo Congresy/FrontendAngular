@@ -36,19 +36,23 @@ import { MyeventsComponent } from './components/event/myevents/myevents.componen
 import { ConferenceService } from './services/conference.service';
 import { ConferenciaFormComponent } from './components/conferencia/form/conferencia-form.component';
 import { PlaceService } from './services/place.service';
+import { EventDisplayComponent } from './components/event/event-display/event-display.component';
+import { EventService } from './services/event.service';
+import { RouterModule } from '@angular/router';
 
 
 @NgModule({
-    imports: [BrowserModule, FormsModule, ReactiveFormsModule,
+    imports: [AppRoutingModule, RouterModule, BrowserModule, FormsModule, ReactiveFormsModule,
         HttpClientModule, MatButtonModule,
-        MatCheckboxModule, AppRoutingModule, BrowserAnimationsModule,
+        MatCheckboxModule, BrowserAnimationsModule,
         MatCardModule, MatFormFieldModule, MatInputModule, MatMenuModule, MatSelectModule],
+    exports: [],
     declarations: [AppComponent,
         ConferenciaComponent, LoginComponent,
         HeaderComponent, FooterComponent, HomeComponent, UserComponent,
         ConferenciaDetailedComponent, ProfileComponent, EventComponent,
-        TestComponent, EventFormComponent, MyeventsComponent, ConferenciaFormComponent],
-    providers: [UsersService, AuthGuardService, DatePipe, ConferenceService, PlaceService],
+        TestComponent, EventFormComponent, MyeventsComponent, ConferenciaFormComponent, EventDisplayComponent],
+    providers: [UsersService, AuthGuardService, DatePipe, ConferenceService, PlaceService, EventService],
     schemas: [CUSTOM_ELEMENTS_SCHEMA],
     bootstrap: [AppComponent]
 })

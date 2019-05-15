@@ -16,6 +16,7 @@ import {
 import { AuthGuardService } from './services/auth-guard.service';
 import { EventFormComponent } from './components/event/form/event-form.component';
 import { ConferenciaFormComponent } from './components/conferencia/form/conferencia-form.component';
+import { EventDisplayComponent } from './components/event/event-display/event-display.component';
 
 const routes: Routes = [
     {
@@ -60,9 +61,18 @@ const routes: Routes = [
         path: 'conferencia-edit/:id',
         component: ConferenciaFormComponent,
         canActivate: [AuthGuardService]
+    }, {
+        path: 'event/:id',
+        component: EventDisplayComponent,
+        canActivate: [AuthGuardService]
     },
     {
         path: 'event-create',
+        component: EventFormComponent,
+        canActivate: [AuthGuardService]
+    },
+    {
+        path: 'event-create/:id',
         component: EventFormComponent,
         canActivate: [AuthGuardService]
     }

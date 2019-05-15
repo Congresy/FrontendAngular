@@ -1,5 +1,6 @@
 <h3>EVENTOS</h3>
 <a *ngIf='own' routerLink="/event-create">Crear evento</a>
 <ul *ngFor="let evento of eventos">
-    {{evento.name}}<button *ngIf='!own' (click)="unirse(evento.id)">UNIRSE</button>
+    <a [routerLink]="['/event/',evento.id]">{{evento.name}}</a><button *ngIf='!own'
+        (click)="unirse(evento.id)">UNIRSE</button>
 </ul>

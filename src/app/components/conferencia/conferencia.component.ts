@@ -18,6 +18,7 @@ export class ConferenciaComponent implements OnInit {
   role: string;
   conferencias: Conferencia[] = [];
   id: string;
+  own: boolean;
   @Input() conferencia: JSON;
   constructor(public router: Router, private conferenciaService: ConferenceService
     , private route: ActivatedRoute) {
@@ -27,6 +28,7 @@ export class ConferenciaComponent implements OnInit {
     this.role = sessionStorage.getItem('role');
     this.route.params.subscribe(params => {
       if (params['own'] === 'own') {
+        this.own = true;
         this.conferenciaService.getUserId();
         this.getMyConfs();
       } else {
@@ -58,11 +60,7 @@ export class ConferenciaComponent implements OnInit {
       });
   }
 
-  viewConf(conferencia: Conferencia) {
-    this.router.navigate(['/conferencia/', conferencia.id]);
-  }
-
-  deleteConf(id: string) {
+  delete(id: string) {
     this.conferenciaService.delete(id).subscribe(res => this.ngOnInit());
     this.conferencias = [];
     // this.router.navigate(["/conferencias"]);
