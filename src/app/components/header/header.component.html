@@ -7,6 +7,8 @@
             <button mat-menu-item routerLink="conferencias">Ver todas</button>
             <button mat-menu-item routerLink="conferencias/own">Mis conferencias</button>
         </mat-menu>
+        <button mat-stroked-button routerLink="post-list">Posts</button>
         <button mat-stroked-button routerLink="profile">Perfil</button>
+        <button *ngIf="role" mat-stroked-button (click)="logout()">Logout</button>
     </div>
 </header>

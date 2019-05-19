@@ -1,0 +1,17 @@
+<div style="margin-top:150px;">
+  <ul *ngFor="let post of posts">
+    <mat-card>
+      <mat-card-title>{{post.title}}</mat-card-title>
+      <mat-card-content>
+        {{post.body}}
+      </mat-card-content>
+      <mat-card-actions>
+        Posted: {{post.posted}} Autor: {{post.authorName}} <br><img src='../../../assets/img/like.png'
+          (click)="like(post.id)"><img src='../../../assets/img/unlike.png' (click)="unlike(post.id)">{{post.votes}}
+        <img src='../../../assets/img/views.png'>{{post.views}}<img src='../../../assets/img/edit.png'><img
+          src='../../../assets/img/delete.png' (click)="delete(post.id)">
+      </mat-card-actions>
+    </mat-card>
+  </ul>
+</div>
+<app-post-form></app-post-form>

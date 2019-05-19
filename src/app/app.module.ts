@@ -39,6 +39,11 @@ import { PlaceService } from './services/place.service';
 import { EventDisplayComponent } from './components/event/event-display/event-display.component';
 import { EventService } from './services/event.service';
 import { RouterModule } from '@angular/router';
+import { PostComponent } from './components/post/post.component';
+import { CommentComponent } from './components/comment/comment.component';
+import { PostService } from './services/post.service';
+import { CommentService } from './services/comment.service';
+import { PostFormComponent } from './components/post/post-form/post-form.component';
 
 
 @NgModule({
@@ -51,8 +56,10 @@ import { RouterModule } from '@angular/router';
         ConferenciaComponent, LoginComponent,
         HeaderComponent, FooterComponent, HomeComponent, UserComponent,
         ConferenciaDetailedComponent, ProfileComponent, EventComponent,
-        TestComponent, EventFormComponent, MyeventsComponent, ConferenciaFormComponent, EventDisplayComponent],
-    providers: [UsersService, AuthGuardService, DatePipe, ConferenceService, PlaceService, EventService],
+        TestComponent, EventFormComponent, MyeventsComponent, ConferenciaFormComponent,
+        EventDisplayComponent, PostComponent, CommentComponent, PostFormComponent],
+    providers: [UsersService, AuthGuardService, DatePipe, ConferenceService, PlaceService, EventService, PostService,
+        CommentService],
     schemas: [CUSTOM_ELEMENTS_SCHEMA],
     bootstrap: [AppComponent]
 })

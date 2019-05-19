@@ -48,7 +48,6 @@ export class ConferenciaFormComponent implements OnInit {
   }
 
   onSubmit(value: any) {
-    console.log("POSIBLE VALOR DEL NOMBRE" + (<HTMLInputElement>document.getElementById('name')).value);
     if (this.conferenceForm.get('conference').get('id') === null) {
       console.log('No entra en el else');
       this.createConference();

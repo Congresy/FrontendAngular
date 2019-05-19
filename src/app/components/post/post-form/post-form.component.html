@@ -1,0 +1,13 @@
+<form [formGroup]="postForm" (ngSubmit)="onSubmit()" class="content">
+  <fieldset formGroupName="post">
+    <legend>POST</legend>
+    <mat-form-field><input matInput type="text" id="title" placeholder="Título" name="title" formControlName="title">
+    </mat-form-field>
+    <mat-form-field><input matInput type="text" id="body" placeholder="Post" name="body" formControlName="body">
+    </mat-form-field>
+    <mat-form-field><input matInput type="text" id="category" placeholder="Categoría" name="category"
+        formControlName="category">
+    </mat-form-field>
+  </fieldset>
+  <button type="submit">Submit</button>
+</form>
