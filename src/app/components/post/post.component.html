@@ -6,8 +6,15 @@
         {{post.body}}
       </mat-card-content>
       <mat-card-actions>
-        Posted: {{post.posted}} Autor: {{post.authorName}} <br><img src='../../../assets/img/like.png'
-          (click)="like(post.id)"><img src='../../../assets/img/unlike.png' (click)="unlike(post.id)">{{post.votes}}
+        Posted: {{post.posted}} Autor: {{post.authorName}}<br>
+        <h2>Comentarios</h2>
+        <ul *ngFor="let comment of comments.get(post.id)">
+          {{comment.title}} by {{comment.author}}
+        </ul>
+
+
+        <br><img src='../../../assets/img/like.png' (click)="like(post.id)"><img src='../../../assets/img/unlike.png'
+          (click)="unlike(post.id)">{{post.votes}}
         <img src='../../../assets/img/views.png'>{{post.views}}<a [routerLink]="['/post-edit', post.id]"><img
             src='../../../assets/img/edit.png'></a><img src='../../../assets/img/delete.png' (click)="delete(post.id)">
       </mat-card-actions>

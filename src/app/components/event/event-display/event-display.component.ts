@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { EventService } from '../../../services/event.service';
 import { Evento } from '../../../models/Evento';
 import { ActivatedRoute } from '@angular/router';
+import { CommentService } from '../../../services/comment.service';
+import { Comment } from '../../../models/Comment';
 
 @Component({
   selector: 'app-event-display',
@@ -11,12 +13,16 @@ import { ActivatedRoute } from '@angular/router';
 export class EventDisplayComponent implements OnInit {
   evento: Evento;
   id: string;
-  constructor(private eventService: EventService, private activatedRoute: ActivatedRoute) { }
+  comments: Comment[];
+  constructor(private eventService: EventService, private activatedRoute: ActivatedRoute,
+    private commentService: CommentService) { }
 
   ngOnInit() {
     this.activatedRoute.params.subscribe(params => {
       this.eventService.getOneById(params['id']).subscribe(data => this.evento = data);
     });
+    this.commentService.getItemComments(this.id).subscribe(data => this.comments = data, error => console.log(error));
   }
+
 
 }

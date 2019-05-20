@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Post } from '../../models/Post';
 import { PostService } from '../../services/post.service';
+import { CommentService } from '../../services/comment.service';
+import { Comment } from '../../models/Comment';
 
 @Component({
   selector: 'app-post',
@@ -10,7 +12,8 @@ import { PostService } from '../../services/post.service';
 export class PostComponent implements OnInit {
 
   posts: Post[] = [];
-  constructor(private postService: PostService) { }
+  comments: Map<String, Comment[]> = new Map;
+  constructor(private postService: PostService, private commentService: CommentService) { }
 
   ngOnInit() {
     this.postService.getAll().subscribe(posts => {
@@ -25,6 +28,7 @@ export class PostComponent implements OnInit {
       }
       this.posts = res;
     }, error => console.log(error));
+    setTimeout(() => this.getComments(), 2000);
   }
 
   delete(id: string) {
@@ -59,5 +63,12 @@ export class PostComponent implements OnInit {
       }
     },
       error => console.log(error));
+  }
+
+  getComments() {
+    console.log(this.posts);
+    for (const post of this.posts) {
+      this.commentService.getItemComments(post.id).subscribe(data => this.comments.set(post.id, data));
+    }
   }
 }
