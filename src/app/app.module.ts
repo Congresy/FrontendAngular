@@ -44,6 +44,7 @@ import { CommentComponent } from './components/comment/comment.component';
 import { PostService } from './services/post.service';
 import { CommentService } from './services/comment.service';
 import { PostFormComponent } from './components/post/post-form/post-form.component';
+import { CommentFormComponent } from './components/comment/comment-form/comment-form.component';
 
 
 @NgModule({
@@ -57,7 +58,7 @@ import { PostFormComponent } from './components/post/post-form/post-form.compone
         HeaderComponent, FooterComponent, HomeComponent, UserComponent,
         ConferenciaDetailedComponent, ProfileComponent, EventComponent,
         TestComponent, EventFormComponent, MyeventsComponent, ConferenciaFormComponent,
-        EventDisplayComponent, PostComponent, CommentComponent, PostFormComponent],
+        EventDisplayComponent, PostComponent, CommentComponent, PostFormComponent, CommentFormComponent],
     providers: [UsersService, AuthGuardService, DatePipe, ConferenceService, PlaceService, EventService, PostService,
         CommentService],
     schemas: [CUSTOM_ELEMENTS_SCHEMA],

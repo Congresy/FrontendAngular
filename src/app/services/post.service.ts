@@ -20,10 +20,16 @@ export class PostService {
     return this.http.get<Post[]>(urlBase, httpOptions);
   }
 
+  getOneById(id: string): Observable<Post> {
+    return this.http.get<Post>(urlBase + '/' + id, httpOptions);
+  }
+
   create(post: Post): Observable<Post> {
     const res: Post = post;
     post.authorId = sessionStorage.getItem('userId');
-    post.posted = '31/08/2019 12:37';
+    const date = new Date();
+    post.posted = date.toLocaleDateString('en-GB') + ' ' + (date.getHours() < 10 ? '0' : '').toString() + date.getHours()
+      + ':' + (date.getMinutes() < 10 ? '0' : '').toString() + date.getMinutes();
     post.views = 0;
     post.comments = [];
     post.draft = false;
@@ -35,7 +41,7 @@ export class PostService {
   }
 
   edit(post: Post): Observable<Post> {
-    return this.http.post<Post>(urlBase + '/' + post.id, post, httpOptions);
+    return this.http.put<Post>(urlBase + '/' + post.id, post, httpOptions);
   }
 
   delete(id: string): Observable<any> {

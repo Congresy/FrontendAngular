@@ -18,5 +18,11 @@
             <label>Sitios libres: </label>{{ conferencia.seatsLeft}}
         </mat-card-content>
         <app-list-event [conf]='id' [own]='own'></app-list-event>
+        <h2>Comentarios</h2>
+        <ul *ngFor="let comment of comments">
+            {{comment.title}}<br>
+            {{comment.author}}
+        </ul>
+        <app-comment-form [id]="conferencia.id"></app-comment-form>
     </mat-card>
 </div>

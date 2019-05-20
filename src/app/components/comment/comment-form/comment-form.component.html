@@ -1,0 +1,10 @@
+<form [formGroup]="commentForm" (ngSubmit)="onSubmit()" class="content">
+  <fieldset formGroupName="comment">
+    <legend>Comentario</legend>
+    <mat-form-field><input matInput type="text" id="title" placeholder="Título" name="title" formControlName="title">
+    </mat-form-field>
+    <mat-form-field><input matInput type="text" id="text" placeholder="Comentario" name="text" formControlName="text">
+    </mat-form-field>
+  </fieldset>
+  <button type="submit">Submit</button>
+</form>

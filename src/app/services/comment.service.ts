@@ -14,4 +14,20 @@ export class CommentService {
   getAll(): Observable<Comment> {
     return this.http.get<Comment>(urlBase, httpOptions);
   }
+
+  getItemComments(id: string): Observable<Comment[]> {
+    return this.http.get<Comment[]>(urlBase + '/commentable/' + id, httpOptions);
+  }
+
+  create(comment: Comment) {
+    comment.author = sessionStorage.getItem('userId');
+    comment.responses = [];
+    comment.thumbsDown = 0;
+    comment.thumbsUp = 0;
+    const date = new Date();
+    comment.sentMoment = date.toLocaleDateString('en-GB') + ' ' + (date.getHours() < 10 ? '0' : '').toString() + date.getHours()
+      + ':' + (date.getMinutes() < 10 ? '0' : '').toString() + date.getMinutes();
+    console.log(comment);
+    return this.http.post<Comment>(urlBase + '/' + comment.commentable + '/' + comment.author, comment, httpOptions);
+  }
 }

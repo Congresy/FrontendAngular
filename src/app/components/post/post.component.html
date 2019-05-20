@@ -8,8 +8,8 @@
       <mat-card-actions>
         Posted: {{post.posted}} Autor: {{post.authorName}} <br><img src='../../../assets/img/like.png'
           (click)="like(post.id)"><img src='../../../assets/img/unlike.png' (click)="unlike(post.id)">{{post.votes}}
-        <img src='../../../assets/img/views.png'>{{post.views}}<img src='../../../assets/img/edit.png'><img
-          src='../../../assets/img/delete.png' (click)="delete(post.id)">
+        <img src='../../../assets/img/views.png'>{{post.views}}<a [routerLink]="['/post-edit', post.id]"><img
+            src='../../../assets/img/edit.png'></a><img src='../../../assets/img/delete.png' (click)="delete(post.id)">
       </mat-card-actions>
     </mat-card>
   </ul>

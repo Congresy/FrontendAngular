@@ -7,6 +7,8 @@ import { Conferencia } from '../../models/Conferencia';
 import { Place } from '../../models/Place';
 import { Actor } from '../../models/Actor';
 import { UsersService } from '../../services/users.service';
+import { CommentService } from '../../services/comment.service';
+import { Comment } from '../../models/Comment';
 
 @Component({
   selector: 'app-conference-simple',
@@ -79,7 +81,9 @@ export class ConferenciaDetailedComponent implements OnInit {
   place: Place;
   place_id: string;
   own: boolean;
-  constructor(public conferenciaService: ConferenceService, private activatedRoute: ActivatedRoute, private sanitizer: DomSanitizer) {
+  comments: Comment[];
+  constructor(public conferenciaService: ConferenceService, private activatedRoute: ActivatedRoute, private sanitizer: DomSanitizer,
+    private commentService: CommentService) {
   }
 
   ngOnInit() {
@@ -96,6 +100,7 @@ export class ConferenciaDetailedComponent implements OnInit {
         console.log(place);
       });
     });
+    this.commentService.getItemComments(this.id).subscribe(data => this.comments = data, error => console.log(error));
   }
 
   getGoogleURL() {
