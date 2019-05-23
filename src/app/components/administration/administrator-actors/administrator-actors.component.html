@@ -1,0 +1,6 @@
+<div class="content">
+  Actores en el sistema: {{actors.length}}
+  <ul *ngFor="let actor of actors">
+    {{actor.name}} <button (click)="delete(actor.id)"></button>
+  </ul>
+</div>

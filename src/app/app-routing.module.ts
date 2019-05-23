@@ -19,6 +19,8 @@ import { ConferenciaFormComponent } from './components/conferencia/form/conferen
 import { EventDisplayComponent } from './components/event/event-display/event-display.component';
 import { PostComponent } from './components/post/post.component';
 import { PostFormComponent } from './components/post/post-form/post-form.component';
+import { AdministratorActorsComponent } from './components/administration/administrator-actors/administrator-actors.component';
+import { AdminComponent } from './components/administration/admin/admin.component';
 
 const routes: Routes = [
     {
@@ -84,6 +86,10 @@ const routes: Routes = [
     }, {
         path: 'post-edit/:id',
         component: PostFormComponent,
+        canActivate: [AuthGuardService]
+    }, {
+        path: 'administrator',
+        component: AdminComponent,
         canActivate: [AuthGuardService]
     }
 ];

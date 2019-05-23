@@ -45,6 +45,13 @@ import { PostService } from './services/post.service';
 import { CommentService } from './services/comment.service';
 import { PostFormComponent } from './components/post/post-form/post-form.component';
 import { CommentFormComponent } from './components/comment/comment-form/comment-form.component';
+import { AdministratorActorsComponent } from './components/administration/administrator-actors/administrator-actors.component';
+import { AdministratorConferencesComponent } from './components/administration/administrator-conferences/administrator-conferences.component';
+import { AdministratorPostsComponent } from './components/administration/administrator-posts/administrator-posts.component';
+import { AdministratorCommentsComponent } from './components/administration/administrator-comments/administrator-comments.component';
+import { AdministratorEventsComponent } from './components/administration/administrator-events/administrator-events.component';
+import { AdminComponent } from './components/administration/admin/admin.component';
+import { SanitizePipe } from './sanitize.pipe';
 
 
 @NgModule({
@@ -58,8 +65,11 @@ import { CommentFormComponent } from './components/comment/comment-form/comment-
         HeaderComponent, FooterComponent, HomeComponent, UserComponent,
         ConferenciaDetailedComponent, ProfileComponent, EventComponent,
         TestComponent, EventFormComponent, MyeventsComponent, ConferenciaFormComponent,
-        EventDisplayComponent, PostComponent, CommentComponent, PostFormComponent, CommentFormComponent],
-    providers: [UsersService, AuthGuardService, DatePipe, ConferenceService, PlaceService, EventService, PostService,
+        EventDisplayComponent, PostComponent, CommentComponent, PostFormComponent, CommentFormComponent,
+        AdministratorActorsComponent, AdministratorConferencesComponent, AdministratorPostsComponent,
+        AdministratorCommentsComponent, AdministratorEventsComponent, AdminComponent, SanitizePipe],
+    providers: [UsersService, AuthGuardService, DatePipe, ConferenceService, PlaceService, EventService,
+        PostService,
         CommentService],
     schemas: [CUSTOM_ELEMENTS_SCHEMA],
     bootstrap: [AppComponent]

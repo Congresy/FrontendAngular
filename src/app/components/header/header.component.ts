@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { UsersService } from '../../services/users.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
@@ -8,7 +9,7 @@ import { UsersService } from '../../services/users.service';
 })
 export class HeaderComponent implements OnInit {
   role: string;
-  constructor(private userService: UsersService) {
+  constructor(private userService: UsersService, private router: Router) {
   }
 
   ngOnInit() {
@@ -18,5 +19,6 @@ export class HeaderComponent implements OnInit {
     sessionStorage.clear();
     localStorage.clear();
     this.userService.role$.next(sessionStorage.getItem('role'));
+    this.router.navigateByUrl('/');
   }
 }

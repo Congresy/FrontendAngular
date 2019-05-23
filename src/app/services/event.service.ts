@@ -13,6 +13,10 @@ export class EventService {
 
   constructor(private http: HttpClient, private formBuilder: FormBuilder, private placeService: PlaceService) { }
 
+  getAll(): Observable<Evento[]> {
+    return this.http.get<Evento[]>('https://congresy.herokuapp.com/events', httpOptions);
+  }
+
   create(event: Evento): Observable<Evento> {
     return this.http.post<Evento>('https://congresy.herokuapp.com/events', event, httpOptions);
   }

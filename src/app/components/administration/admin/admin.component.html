@@ -1,0 +1,22 @@
+<div class="content">
+  <button mat-button type="button" (click)="variable = 'actor'">Actores</button>
+  <button mat-button type="button" (click)="variable = 'event'">Eventos</button>
+  <button mat-button type="button" (click)="variable = 'conference'">Conferencias</button>
+  <button mat-button type="button" (click)="variable = 'comment'">Comentarios</button>
+  <button mat-button type="button" (click)="variable = 'post'">Posts</button>
+</div>
+<ng-container *ngIf="variable==='actor'">
+  <app-administrator-actors></app-administrator-actors>
+</ng-container>
+<ng-container *ngIf="variable==='comment'">
+  <app-administrator-comments></app-administrator-comments>
+</ng-container>
+<ng-container *ngIf=" variable==='post'">
+  <app-administrator-posts></app-administrator-posts>
+</ng-container>
+<ng-container *ngIf="variable==='event'">
+  <app-administrator-events></app-administrator-events>
+</ng-container>
+<ng-container *ngIf="variable==='conference'">
+  <app-administrator-conferences></app-administrator-conferences>
+</ng-container>
