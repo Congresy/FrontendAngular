@@ -80,6 +80,10 @@ const routes: Routes = [
         component: EventFormComponent,
         canActivate: [AuthGuardService]
     }, {
+        path: 'event-edit/:id',
+        component: EventFormComponent,
+        canActivate: [AuthGuardService]
+    }, {
         path: 'post-list',
         component: PostComponent,
         canActivate: [AuthGuardService]

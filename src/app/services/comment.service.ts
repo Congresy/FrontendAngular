@@ -19,6 +19,10 @@ export class CommentService {
     return this.http.get<Comment[]>(urlBase + '/commentable/' + id, httpOptions);
   }
 
+  delete(id: string) {
+    return this.http.delete<Comment[]>(urlBase + '/' + id);
+  }
+
   create(comment: Comment) {
     comment.author = sessionStorage.getItem('userId');
     comment.responses = [];

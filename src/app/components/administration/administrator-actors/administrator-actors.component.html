@@ -1,6 +1,8 @@
 <div class="content">
   Actores en el sistema: {{actors.length}}
   <ul *ngFor="let actor of actors">
-    {{actor.name}} <button (click)="delete(actor.id)"></button>
+    {{actor.name}}<button (click)="delete(actor.id)">Eliminar</button>
+    <button *ngIf="!isBanned(actor)" (click)="ban(actor.id, 'ban')">Banear</button>
+    <button *ngIf="isBanned(actor)" (click)="unban(actor.id, 'unban')">Desbanear</button>
   </ul>
 </div>

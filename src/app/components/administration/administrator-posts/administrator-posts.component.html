@@ -1,6 +1,6 @@
 <div class="content">
   Posts en el sistema: {{posts.length}}
   <ul *ngFor="let post of posts">
-    {{post.title}} <button (click)="delete(post.id)"></button>
+    {{post.title}} <button (click)="delete(post.id)">Eliminar</button>
   </ul>
 </div>

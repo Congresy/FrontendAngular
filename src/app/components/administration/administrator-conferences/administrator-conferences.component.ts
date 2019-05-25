@@ -13,6 +13,16 @@ export class AdministratorConferencesComponent implements OnInit {
   constructor(private conferenciaService: ConferenceService) { }
 
   ngOnInit() {
+    this.initialize();
+  }
+
+  delete(id: string) {
+    this.conferenciaService.delete(id).subscribe(() =>
+      this.initialize()
+      , error => console.log(error));
+  }
+
+  initialize() {
     this.conferenciaService.getAll().subscribe(data => this.conferences = data);
   }
 

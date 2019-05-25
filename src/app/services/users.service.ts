@@ -34,13 +34,22 @@ export class UsersService {
         localStorage.setItem('user', username);
     }
 
-    getUsers(): Observable<Array<Actor>> {
+    getUsers(): Observable<Actor[]> {
         return this.http.get<Actor[]>(this.base_url, { headers: this.httpOptions.headers })
             .pipe(
                 tap(users => this.log(`fetched users`)),
                 catchError(this.handleError('getUsers', []))
             );
     }
+
+    getBannedUsers(): Observable<Actor[]> {
+        return this.http.get<Actor[]>(this.base_url + 'banned', this.httpOptions);
+    }
+
+    delete(id: string) {
+        return this.http.delete(this.base_url + id);
+    }
+
     /* getRole(username: string){
        this.http.get('https://congresy.herokuapp.com/actors/username/'+username).subscribe(
          data=>{this.role = data.role},
@@ -54,6 +63,10 @@ export class UsersService {
             tap(data => this.log(`fetched user id=${name}`)),
             catchError(this.handleError<any>(`getUser id=${name}`))
         );
+    }
+
+    ban(id: string, action: string): Observable<Actor> {
+        return this.http.put<Actor>(this.base_url + 'ban/' + id + '?action=' + action, this.httpOptions);
     }
 
     private handleError<T>(operation = 'operation', result?: T) {

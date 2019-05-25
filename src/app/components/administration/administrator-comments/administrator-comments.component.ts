@@ -13,6 +13,16 @@ export class AdministratorCommentsComponent implements OnInit {
   constructor(private commentService: CommentService) { }
 
   ngOnInit() {
+    this.initialize();
+  }
+
+  delete(id: string) {
+    this.commentService.delete(id).subscribe(() =>
+      this.initialize()
+      , error => console.log(error));
+  }
+
+  initialize() {
     this.commentService.getAll().subscribe(data => this.comments = data);
   }
 

@@ -13,6 +13,16 @@ export class AdministratorEventsComponent implements OnInit {
   constructor(private eventService: EventService) { }
 
   ngOnInit() {
+    this.initialize();
+  }
+
+  delete(id: string) {
+    this.eventService.delete(id).subscribe(() =>
+      this.initialize()
+      , error => console.log(error));
+  }
+
+  initialize() {
     this.eventService.getAll().subscribe(data => this.events = data);
   }
 

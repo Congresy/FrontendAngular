@@ -11,11 +11,39 @@ export class AdministratorActorsComponent implements OnInit {
 
   actors: Actor[] = [];
   constructor(private userService: UsersService) {
-
-    this.userService.getUsers().subscribe(data => this.actors = data);
   }
 
   ngOnInit() {
+    this.initialize();
   }
 
+  delete(id: string) {
+    this.userService.delete(id).subscribe(() =>
+      this.initialize()
+      , error => console.log(error));
+  }
+
+  initialize() {
+    this.userService.getUsers().subscribe(data => {
+      this.actors = data;
+    });
+    this.userService.getBannedUsers().subscribe(data => {
+      for (const actor of data) {
+        this.actors.push(actor);
+      }
+    }, error => console.log(error));
+  }
+
+  isBanned(actor: Actor): boolean { return actor.banned; }
+
+  ban(id: string, action: string) {
+    this.userService.ban(id, action).subscribe(data => {
+      console.log(data);
+      for (const actor of this.actors) {
+        if (actor.id === id) {
+          actor.banned = !actor.banned;
+        }
+      }
+    }, error => console.log(error));
+  }
 }

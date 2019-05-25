@@ -13,6 +13,16 @@ export class AdministratorPostsComponent implements OnInit {
   constructor(private postService: PostService) { }
 
   ngOnInit() {
+    this.initialize();
+  }
+
+  delete(id: string) {
+    this.postService.delete(id).subscribe(() =>
+      this.initialize()
+      , error => console.log(error));
+  }
+
+  initialize() {
     this.postService.getAll().subscribe(data => this.posts = data);
   }
 

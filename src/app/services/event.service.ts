@@ -25,6 +25,9 @@ export class EventService {
     return this.http.put<Evento>('https://congresy.herokuapp.com/events/' + event.id, event, httpOptions);
   }
 
+  delete(id: string) {
+    return this.http.delete('https://congresy.herokuapp.com/events/' + id);
+  }
   joinEvent(idEvent: string) {
     this.http.put('https://congresy.herokuapp.com/events/add/' + idEvent + '/participants/' + sessionStorage.getItem('userId'),
       { headers: 'Accept: application/json' }).subscribe();
