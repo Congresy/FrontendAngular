@@ -15,6 +15,10 @@ export class CommentService {
     return this.http.get<Comment[]>(urlBase, httpOptions);
   }
 
+  getOneById(id: string): Observable<Comment> {
+    return this.http.get<Comment>(urlBase + '/' + id, httpOptions);
+  }
+
   getItemComments(id: string): Observable<Comment[]> {
     return this.http.get<Comment[]>(urlBase + '/commentable/' + id, httpOptions);
   }

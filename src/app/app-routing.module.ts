@@ -10,17 +10,20 @@ import {
     ConferenciaDetailedComponent,
 } from './components/conferencia/conferencia.component';
 import {
-    UserComponent,
+    UserComponent
+} from './components/user/user.component';
+import {
     ProfileComponent
-} from './user/user.component';
+} from './components/user/profile/profile.component';
 import { AuthGuardService } from './services/auth-guard.service';
 import { EventFormComponent } from './components/event/form/event-form.component';
 import { ConferenciaFormComponent } from './components/conferencia/form/conferencia-form.component';
 import { EventDisplayComponent } from './components/event/event-display/event-display.component';
 import { PostComponent } from './components/post/post.component';
 import { PostFormComponent } from './components/post/post-form/post-form.component';
-import { AdministratorActorsComponent } from './components/administration/administrator-actors/administrator-actors.component';
 import { AdminComponent } from './components/administration/admin/admin.component';
+import { BannerComponent } from './components/administration/banner/banner.component';
+import { BannerFormComponent } from './components/administration/banner/banner-form/banner-form.component';
 
 const routes: Routes = [
     {
@@ -94,6 +97,19 @@ const routes: Routes = [
     }, {
         path: 'administrator',
         component: AdminComponent,
+        canActivate: [AuthGuardService]
+    }, {
+        path: 'banners',
+        component: BannerComponent,
+        canActivate: [AuthGuardService]
+    },
+    {
+        path: 'banner-create',
+        component: BannerFormComponent,
+        canActivate: [AuthGuardService]
+    }, {
+        path: 'banner-edit/:id',
+        component: BannerFormComponent,
         canActivate: [AuthGuardService]
     }
 ];

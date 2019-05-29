@@ -2,13 +2,13 @@
     <mat-card>
         <mat-card-header>
             <mat-card-title>
-                <h1>{{conferencia.name}}</h1>
+                <h1 style="color:#6b5b95;">{{conferencia.name}}</h1>
             </mat-card-title>
             <mat-card-subtitle>{{conferencia.theme}}</mat-card-subtitle>
         </mat-card-header>
         <iframe width="500" height="350" frameborder="0" style="border:0; float: right;" [src]="getGoogleURL()"
             allowfullscreen>
-        </iframe>
+        </iframe><br>
         <mat-card-content>
             <h2>{{conferencia.description}}</h2>
             {{conferencia.price}} €<br>
@@ -18,11 +18,10 @@
             <label>Sitios libres: </label>{{ conferencia.seatsLeft}}
         </mat-card-content>
         <app-list-event [conf]='id' [own]='own'></app-list-event>
-        <h2>Comentarios</h2>
-        <ul *ngFor="let comment of comments">
-            {{comment.title}}<br>
-            {{comment.author}}
-        </ul>
-        <app-comment-form [id]="conferencia.id"></app-comment-form>
+        <div style="border: solid">
+            <h2>Comentarios</h2>
+            <app-comment *ngFor="let comment of comments" [id]="comment.id"></app-comment>
+            <app-comment-form [id]="conferencia.id"></app-comment-form>
+        </div>
     </mat-card>
 </div>

@@ -6,6 +6,8 @@ import { of } from 'rxjs/observable/of';
 import { Subject } from 'rxjs/Subject';
 import { ConferenceService } from './conference.service';
 import { Actor } from '../models/Actor';
+import { UserAccount } from '../models/UserAccount';
+import { ActorWrapper } from '../models/ActorWrapper';
 
 @Injectable()
 export class UsersService {
@@ -65,6 +67,18 @@ export class UsersService {
         );
     }
 
+    getOneById(id: string): Observable<Actor> {
+        return this.http.get<Actor>(this.base_url + id, this.httpOptions);
+    }
+
+    getUserAccount(username: string): Observable<UserAccount> {
+        return this.http.get<UserAccount>(this.base_url + 'userAccount/' + username, this.httpOptions);
+    }
+
+    update(id: string, actor: ActorWrapper): Observable<Actor> {
+        return this.http.put<Actor>(this.base_url + id, actor, this.httpOptions);
+    }
+
     ban(id: string, action: string): Observable<Actor> {
         return this.http.put<Actor>(this.base_url + 'ban/' + id + '?action=' + action, this.httpOptions);
     }
@@ -88,5 +102,6 @@ export interface User {
     phone: string;
     id: string;
     role: string;
+    photo: string;
 }
 

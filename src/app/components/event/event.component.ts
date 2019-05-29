@@ -32,5 +32,9 @@ export class EventComponent implements OnInit {
   navigateCreate() {
     this.router.navigate(['/event-create', this.conf]);
   }
+
+  imParticipant(participants: Array<string>) {
+    return participants.includes(sessionStorage.getItem('userId'));
+  }
 }
 

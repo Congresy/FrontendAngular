@@ -24,7 +24,8 @@ import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
 import { HomeComponent } from './components/home/home.component';
 import { AppRoutingModule } from './app-routing.module';
-import { UserComponent, ProfileComponent } from './user/user.component';
+import { UserComponent } from './components/user/user.component';
+import { ProfileComponent } from './components/user/profile/profile.component';
 import { UsersService } from './services/users.service';
 import { AuthGuardService } from './services/auth-guard.service';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -52,6 +53,11 @@ import { AdministratorCommentsComponent } from './components/administration/admi
 import { AdministratorEventsComponent } from './components/administration/administrator-events/administrator-events.component';
 import { AdminComponent } from './components/administration/admin/admin.component';
 import { SanitizePipe } from './sanitize.pipe';
+import { BannerComponent } from './components/administration/banner/banner.component';
+import { BannerDisplayComponent } from './components/administration/banner/banner-display/banner-display.component';
+import { BannerService } from './services/banner.service';
+import { BannerFormComponent } from './components/administration/banner/banner-form/banner-form.component';
+import { ProfileFormComponent } from './components/user/profile/profile-form/profile-form.component';
 
 
 @NgModule({
@@ -67,9 +73,10 @@ import { SanitizePipe } from './sanitize.pipe';
         TestComponent, EventFormComponent, MyeventsComponent, ConferenciaFormComponent,
         EventDisplayComponent, PostComponent, CommentComponent, PostFormComponent, CommentFormComponent,
         AdministratorActorsComponent, AdministratorConferencesComponent, AdministratorPostsComponent,
-        AdministratorCommentsComponent, AdministratorEventsComponent, AdminComponent, SanitizePipe],
+        AdministratorCommentsComponent, AdministratorEventsComponent, AdminComponent,
+        SanitizePipe, BannerComponent, BannerDisplayComponent, BannerFormComponent, ProfileFormComponent],
     providers: [UsersService, AuthGuardService, DatePipe, ConferenceService, PlaceService, EventService,
-        PostService,
+        PostService, BannerService,
         CommentService],
     schemas: [CUSTOM_ELEMENTS_SCHEMA],
     bootstrap: [AppComponent]

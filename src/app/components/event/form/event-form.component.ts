@@ -93,6 +93,7 @@ export class EventFormComponent implements OnInit {
         data.place = res.id;
         console.log(data);
         this.eventService.update(data).subscribe(rtdo => console.log(rtdo));
+        this.router.navigateByUrl('/event/' + data.id);
       });
     });
   }
@@ -106,6 +107,7 @@ export class EventFormComponent implements OnInit {
     evento.speakers = [];
     this.eventService.update(evento).subscribe(data => console.log(data));
     this.placeService.update(this.eventForm.get('place').value).subscribe(data => console.log(data));
+    this.router.navigateByUrl('/event/' + evento.id);
 
   }
 }

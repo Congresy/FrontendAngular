@@ -1,0 +1,11 @@
+<form style="margin-top: 150px;" [formGroup]="profileForm" (ngSubmit)="onSubmit()" novalidate>
+  <legend>Datos del perfil</legend>
+  <mat-form-field><input matInput formControlName="email" type="text" placeholder="Email" required>
+  </mat-form-field>
+  <mat-form-field><input matInput formControlName="phone" type="text" placeholder="Telefono" required>
+  </mat-form-field>
+  <mat-form-field><input matInput formControlName="photo" type="text" placeholder="Imagen" required>
+  </mat-form-field>
+  <button type="submit" [disabled]="profileForm.pristine">Save</button>
+
+</form>

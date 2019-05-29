@@ -21,4 +21,8 @@ export class HeaderComponent implements OnInit {
     this.userService.role$.next(sessionStorage.getItem('role'));
     this.router.navigateByUrl('/');
   }
+
+  isAdministrator(): boolean {
+    return sessionStorage.getItem('role') === 'Administrator';
+  }
 }

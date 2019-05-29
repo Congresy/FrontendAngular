@@ -1,0 +1,22 @@
+<form style="margin-top: 150px;" [formGroup]="bannerForm" (ngSubmit)="onSubmit()" novalidate>
+  <fieldset formGroupName="banner">
+    <legend>Datos del anuncio</legend>
+    <input *ngIf="edit" formControlName="idConference">
+    <mat-form-field><input matInput formControlName="picture" type="url" placeholder="Imagen" required>
+    </mat-form-field>
+    <mat-form-field><input matInput formControlName="description" type="text" placeholder="Descripción" required>
+    </mat-form-field>
+    <mat-form-field><input matInput formControlName="url" type="url" placeholder="URL" required>
+    </mat-form-field>
+    <mat-form-field>
+      <mat-label>Conferencia</mat-label>
+      <mat-select name="idConference" id="idConference" formControlName="idConference">
+        <mat-option *ngFor="let conference of conferences" [value]="conference.id">
+          {{conference.name}}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+  </fieldset>
+  <button type="submit" [disabled]="bannerForm.pristine">Save</button>
+
+</form>

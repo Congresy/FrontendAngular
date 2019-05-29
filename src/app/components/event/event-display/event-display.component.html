@@ -1,14 +1,31 @@
 <div class="content">
   <mat-card>
     <mat-card-header>
-      <mat-card-title>{{evento.name}}</mat-card-title>
+      <mat-card-title>
+        <h1 style="color:#6b5b95;">{{evento.name}}</h1>
+      </mat-card-title>
       <mat-card-subtitle>{{evento.role}}</mat-card-subtitle>
     </mat-card-header>
     <mat-card-content>
-      {{evento.description}}
+      {{evento.description}}<br><br>
+      <b>Inicio:</b> {{evento.start}}<br>
+      <b>Fin:</b> {{evento.end}}<br>
+      <b>Cupos:</b> {{evento.seatsLeft}}/{{evento.allowedParticipants}}<br>
+      <div>
+        <h3>Participantes</h3>
+        <ul *ngFor="let participant of participants">
+          <li>{{participant.name}} {{participant.surname}}</li>
+        </ul>
+      </div>
+      <div>
+        <h3>Ponentes</h3>
+        <ul *ngFor="let speaker of speakers">
+          <li>{{speaker.name}} {{speaker.surname}}</li>
+        </ul>
+      </div>
     </mat-card-content>
     <mat-card-actions>
-      <a mat-button [routerLink]="['/event-edit', evento.id]">Editar</a>
+      <a *ngIf="isOwn()" mat-stroked-button [routerLink]="['/event-edit', evento.id]">Editar</a><a></a>
     </mat-card-actions>
   </mat-card>
 
