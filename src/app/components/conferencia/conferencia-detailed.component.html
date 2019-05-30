@@ -1,27 +1,31 @@
 <div class="content">
-    <mat-card>
+    <mat-card style="float: left;position: relative;">
         <mat-card-header>
+            <legend style="align-content: flex-start; position: absolute; color:rgba(0, 0, 0, 0.50)">Conferencia -
+                {{conferencia.theme}}
+            </legend>
             <mat-card-title>
+                <br>
                 <h1 style="color:#6b5b95;">{{conferencia.name}}</h1>
             </mat-card-title>
-            <mat-card-subtitle>{{conferencia.theme}}</mat-card-subtitle>
         </mat-card-header>
         <iframe width="500" height="350" frameborder="0" style="border:0; float: right;" [src]="getGoogleURL()"
             allowfullscreen>
         </iframe><br>
         <mat-card-content>
-            <h2>{{conferencia.description}}</h2>
-            {{conferencia.price}} €<br>
-            <label>Cupos: </label>{{conferencia.allowedParticipants}}<br>
-            <label>Inicio: </label>{{conferencia.start}}<br>
-            <label>Fin: </label>{{conferencia.end}}<br>
-            <label>Sitios libres: </label>{{ conferencia.seatsLeft}}
+            <p>{{conferencia.description}}</p>
+            <b>€</b> {{conferencia.price}} <br>
+            <label><b>Cupos:</b> </label>{{conferencia.allowedParticipants}}<br>
+            <label><b>Inicio:</b> </label>{{conferencia.start}}<br>
+            <label><b>Fin:</b> </label>{{conferencia.end}}<br>
+            <label><b>Sitios libres:</b> </label>{{ conferencia.seatsLeft}}
+
+            <app-list-event [conf]='id' [own]='own'></app-list-event>
+            <div style="border: solid rgba(10, 0, 255, 0.10); padding: 10px; float: left;">
+                <h3>Comentarios</h3>
+                <app-comment *ngFor="let comment of comments" [id]="comment.id"></app-comment>
+                <app-comment-form [id]="conferencia.id"></app-comment-form>
+            </div>
         </mat-card-content>
-        <app-list-event [conf]='id' [own]='own'></app-list-event>
-        <div style="border: solid">
-            <h2>Comentarios</h2>
-            <app-comment *ngFor="let comment of comments" [id]="comment.id"></app-comment>
-            <app-comment-form [id]="conferencia.id"></app-comment-form>
-        </div>
     </mat-card>
 </div>

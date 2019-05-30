@@ -1,10 +1,12 @@
 <div class="content">
-  <mat-card>
+  <mat-card style="float: left;position: relative;">
     <mat-card-header>
+      <legend style="align-content: flex-start; position: absolute; color:rgba(0, 0, 0, 0.50)">Evento - {{evento.role}}
+      </legend>
       <mat-card-title>
+        <br>
         <h1 style="color:#6b5b95;">{{evento.name}}</h1>
       </mat-card-title>
-      <mat-card-subtitle>{{evento.role}}</mat-card-subtitle>
     </mat-card-header>
     <mat-card-content>
       {{evento.description}}<br><br>
@@ -13,15 +15,18 @@
       <b>Cupos:</b> {{evento.seatsLeft}}/{{evento.allowedParticipants}}<br>
       <div>
         <h3>Participantes</h3>
-        <ul *ngFor="let participant of participants">
-          <li>{{participant.name}} {{participant.surname}}</li>
-        </ul>
+        <mat-list>
+          <mat-list-item *ngFor="let participant of participants">
+            {{participant.name}} {{participant.surname}}</mat-list-item>
+        </mat-list>
       </div>
       <div>
         <h3>Ponentes</h3>
-        <ul *ngFor="let speaker of speakers">
-          <li>{{speaker.name}} {{speaker.surname}}</li>
-        </ul>
+        <mat-list>
+          <mat-list-item *ngFor="let speaker of speakers">
+            {{speaker.name}} {{speaker.surname}}
+          </mat-list-item>
+        </mat-list>
       </div>
     </mat-card-content>
     <mat-card-actions>

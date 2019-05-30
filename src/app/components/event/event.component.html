@@ -1,6 +1,6 @@
-<h3>EVENTOS</h3>
-<a *ngIf='own' (click)="navigateCreate()">Crear evento</a>
+<h3>Eventos</h3>
+<a *ngIf='own' href="" (click)="navigateCreate()">Crear evento</a>
 <ul *ngFor="let evento of eventos">
-        <a [routerLink]="['/event/',evento.id]">{{evento.name}} </a> <button
+        <a mat-raised-button [routerLink]="['/event/',evento.id]">{{evento.name}} </a> <button
                 *ngIf="!own && imParticipant(evento.participants)" (click)="unirse(evento.id)">UNIRSE</button>
 </ul>

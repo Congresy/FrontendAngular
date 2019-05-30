@@ -18,7 +18,9 @@ import {
     MatFormFieldModule,
     MatInputModule,
     MatMenuModule,
-    MatSelectModule
+    MatSelectModule,
+    MatList,
+    MatListModule
 } from '@angular/material';
 import { HeaderComponent } from './components/header/header.component';
 import { FooterComponent } from './components/footer/footer.component';
@@ -64,7 +66,7 @@ import { ProfileFormComponent } from './components/user/profile/profile-form/pro
     imports: [AppRoutingModule, RouterModule, BrowserModule, FormsModule, ReactiveFormsModule,
         HttpClientModule, MatButtonModule,
         MatCheckboxModule, BrowserAnimationsModule,
-        MatCardModule, MatFormFieldModule, MatInputModule, MatMenuModule, MatSelectModule],
+        MatCardModule, MatFormFieldModule, MatInputModule, MatMenuModule, MatSelectModule, MatListModule],
     exports: [],
     declarations: [AppComponent,
         ConferenciaComponent, LoginComponent,

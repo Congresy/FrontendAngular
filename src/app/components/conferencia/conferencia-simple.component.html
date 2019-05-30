@@ -7,9 +7,11 @@
                 <mat-card-subtitle><b>{{conferencia.theme}} By: {{conferencia.organizator}}</b></mat-card-subtitle>
                 <mat-card-content>{{conferencia.description}}<br><br>
                 </mat-card-content>
-                <mat-card-action><button mat-button [routerLink]="['/conferencia', conferencia.id]">Ver más</button>
-                    <button *ngIf="own" mat-button [routerLink]="['/conferencia-edit', conferencia.id]">Editar</button>
-                    <button *ngIf="own" mat-button (click)="delete(conferencia.id)">Borrar</button>
+                <mat-card-action><button mat-stroked-button [routerLink]="['/conferencia', conferencia.id]">Ver
+                        más</button>
+                    <button *ngIf="own" mat-stroked-button
+                        [routerLink]="['/conferencia-edit', conferencia.id]">Editar</button>
+                    <button *ngIf="own" mat-stroked-button (click)="delete(conferencia.id)">Borrar</button>
                 </mat-card-action>
             </mat-card>
         </div>

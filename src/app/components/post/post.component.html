@@ -3,20 +3,20 @@
     <mat-card>
       <mat-card-title>{{post.title}}</mat-card-title>
       <mat-card-content>
-        {{post.body}}
+        {{post.body}}<br><br>
+        Posted: {{post.posted}} Autor: {{post.authorName}}<br>
+        <div>
+          <h3>Comentarios</h3>
+          <app-comment *ngFor="let comment of comments.get(post.id)" [id]="comment.id"></app-comment>
+          <app-comment-form [id]="post.id"></app-comment-form>
+        </div>
       </mat-card-content>
       <mat-card-actions>
-        Posted: {{post.posted}} Autor: {{post.authorName}}<br>
-        <h2>Comentarios</h2>
-        <ul *ngFor="let comment of comments.get(post.id)">
-          {{comment.title}} by {{comment.author}}
-        </ul>
-
-
-        <br><img src='../../../assets/img/like.png' (click)="like(post.id)"><img src='../../../assets/img/unlike.png'
-          (click)="unlike(post.id)">{{post.votes}}
+        <br><img style="cursor: pointer;" src='../../../assets/img/like.png' (click)="like(post.id)"><img
+          style="cursor: pointer;" src='../../../assets/img/unlike.png' (click)="unlike(post.id)">{{post.votes}}
         <img src='../../../assets/img/views.png'>{{post.views}}<a [routerLink]="['/post-edit', post.id]"><img
-            src='../../../assets/img/edit.png'></a><img src='../../../assets/img/delete.png' (click)="delete(post.id)">
+            src='../../../assets/img/edit.png'></a><img style="cursor: pointer;" src='../../../assets/img/delete.png'
+          (click)="delete(post.id)">
       </mat-card-actions>
     </mat-card>
   </ul>
