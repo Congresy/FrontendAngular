@@ -24,11 +24,11 @@
   </select> -->
     <mat-form-field>
       <mat-label>Tipo</mat-label>
-      <select name="role" id="role" placeholder="Tipo" [(ngModel)]="role" #roleInput="ngModel" required>
+      <mat-select name="role" id="role" placeholder="Tipo" [(ngModel)]="role" #roleInput="ngModel" required>
         <mat-option *ngFor="let role of roles" [value]="role">
           {{role}}
         </mat-option>
-      </select>
+      </mat-select>
     </mat-form-field>
   </fieldset> <br>
   <button mat-stroked-button type="submit">Registrarse</button>

@@ -12,9 +12,6 @@
             <app-comment *ngFor="let comment of comments.get(post.id)" [id]="comment.id"></app-comment>
             <br>
           </div>
-          <div *ngIf="comments.get(post.id)">
-            Esta publicación aún no tiene comentarios. Sé el primero en escribir uno.
-          </div>
           <app-comment-form [id]="post.id"></app-comment-form>
         </div>
       </mat-card-content>

@@ -1,6 +1,6 @@
 <div *ngIf="eventos !== undefined">
         <h3>Eventos</h3>
-        <a *ngIf='own' href="" (click)="navigateCreate()">Crear evento</a>
+        <button mat-stroked-button *ngIf='own' (click)="navigateCreate()">Crear evento</button>
         <div *ngIf="hayEventos(); else noEvents">
                 <ul *ngFor="let evento of eventos">
                         <a mat-raised-button [routerLink]="['/event/',evento.id]">{{evento.name}} </a> <button

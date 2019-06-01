@@ -17,7 +17,7 @@ export class UserComponent implements OnInit {
   email: string;
   photo: string;
   role: string;
-  roles: String[] = ['User', 'Organizator', 'Speaker', 'Administrator'];
+  roles: String[] = ['User', 'Organizator'];
   constructor(private http: HttpClient, private userService: UsersService) {
   }
 

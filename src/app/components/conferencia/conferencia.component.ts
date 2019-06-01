@@ -95,7 +95,6 @@ export class ConferenciaDetailedComponent implements OnInit {
     });
     this.conferenciaService.getConf(this.id).subscribe(async data => {
       this.conferencia = data;
-      console.log('PARTICIPANTS' + data.participants);
       for (const participant of data.participants) {
         this.userService.getOneById(participant).subscribe(parti => {
           this.participantArray.push(parti);
