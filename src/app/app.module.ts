@@ -60,6 +60,8 @@ import { BannerDisplayComponent } from './components/administration/banner/banne
 import { BannerService } from './services/banner.service';
 import { BannerFormComponent } from './components/administration/banner/banner-form/banner-form.component';
 import { ProfileFormComponent } from './components/user/profile/profile-form/profile-form.component';
+import { SearchComponent } from './components/search/search/search.component';
+import { PostDisplayComponent } from './components/post/post-display/post-display.component';
 
 
 @NgModule({
@@ -76,7 +78,7 @@ import { ProfileFormComponent } from './components/user/profile/profile-form/pro
         EventDisplayComponent, PostComponent, CommentComponent, PostFormComponent, CommentFormComponent,
         AdministratorActorsComponent, AdministratorConferencesComponent, AdministratorPostsComponent,
         AdministratorCommentsComponent, AdministratorEventsComponent, AdminComponent,
-        SanitizePipe, BannerComponent, BannerDisplayComponent, BannerFormComponent, ProfileFormComponent],
+        SanitizePipe, BannerComponent, BannerDisplayComponent, BannerFormComponent, ProfileFormComponent, SearchComponent, PostDisplayComponent],
     providers: [UsersService, AuthGuardService, DatePipe, ConferenceService, PlaceService, EventService,
         PostService, BannerService,
         CommentService],

@@ -22,7 +22,7 @@ export class EventComponent implements OnInit {
 
   ngOnInit() {
     this.http.get<any[]>('https://congresy.herokuapp.com/events/all/conferences/' + this.conf, { headers: httpOptions.headers })
-      .subscribe(data => this.eventos = data);
+      .subscribe(data => { this.eventos = data; });
     console.log('Conferencia' + this.conf);
   }
 
@@ -34,7 +34,19 @@ export class EventComponent implements OnInit {
   }
 
   imParticipant(participants: Array<string>) {
-    return participants.includes(sessionStorage.getItem('userId'));
+    if (this.eventos !== undefined) {
+      return participants.includes(sessionStorage.getItem('userId'));
+    } else {
+      this.imParticipant(participants);
+    }
+  }
+
+  hayEventos(): boolean {
+    if (this.eventos !== undefined) {
+      return this.eventos.length > 0;
+    } else {
+      this.hayEventos();
+    }
   }
 }
 

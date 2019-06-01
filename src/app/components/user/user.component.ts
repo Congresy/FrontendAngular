@@ -16,6 +16,8 @@ export class UserComponent implements OnInit {
   phone: string;
   email: string;
   photo: string;
+  role: string;
+  roles: String[] = ['User', 'Organizator', 'Speaker', 'Administrator'];
   constructor(private http: HttpClient, private userService: UsersService) {
   }
 
@@ -29,7 +31,7 @@ export class UserComponent implements OnInit {
       },
       actor: {
         name: this.name, surname: this.surname, email: this.email,
-        photo: this.photo, phone: this.phone, role: "User"
+        photo: this.photo, phone: this.phone, role: this.role
       }
     };
     this.userService.registerUser(body);

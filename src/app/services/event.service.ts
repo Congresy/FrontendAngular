@@ -37,6 +37,7 @@ export class EventService {
     return this.http.get<Evento>('https://congresy.herokuapp.com/events/' + id, httpOptions);
   }
 
+
   generateForm(): FormGroup {
     return this.formBuilder.group({
       event: this.formBuilder.group({

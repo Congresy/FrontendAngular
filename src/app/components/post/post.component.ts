@@ -12,7 +12,7 @@ import { Comment } from '../../models/Comment';
 export class PostComponent implements OnInit {
 
   posts: Post[] = [];
-  comments: Map<String, Comment[]> = new Map;
+  comments: Map<String, Comment[]> = new Map();
   constructor(private postService: PostService, private commentService: CommentService) { }
 
   ngOnInit() {
@@ -66,9 +66,26 @@ export class PostComponent implements OnInit {
   }
 
   getComments() {
-    console.log(this.posts);
     for (const post of this.posts) {
-      this.commentService.getItemComments(post.id).subscribe(data => this.comments.set(post.id, data));
+      this.commentService.getItemComments(post.id).subscribe(data => {
+        this.comments.set(post.id, data);
+      });
+    }
+  }
+
+  hasComments(idPost: string): boolean {
+    try {
+      return this.comments.get(idPost).values.length > 0;
+    } catch (e) {
+      return false;
+    }
+  }
+
+  isOwn(author: string): boolean {
+    if (author === sessionStorage.getItem('userId')) {
+      return true;
+    } else {
+      return false;
     }
   }
 }

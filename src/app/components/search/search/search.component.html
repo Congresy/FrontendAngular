@@ -1,0 +1,32 @@
+<div class="content">
+  <form (ngSubmit)="buscar()">
+    <mat-form-field><input matInput type="text" name="busqueda" id="busqueda" placeholder="Buscar.."
+        [(ngModel)]="busqueda" #busquedaInput="ngModel">
+    </mat-form-field>
+
+    <mat-form-field>
+      <mat-label>¿Qué buscas?</mat-label>
+      <mat-select [(value)]="tipo" required>
+        <mat-option value="conferencia">Conferencias</mat-option>
+        <mat-option value="post">Posts</mat-option>
+      </mat-select>
+    </mat-form-field>
+    <button mat-stroked-button type="submit">Buscar</button>
+  </form>
+</div>
+<ng-container *ngIf="mostrar === 'conferencia'">
+  <h3>Se han encontrado {{resultado.length}} conferencias.</h3>
+  <div>
+    <ul *ngFor="let conferencia of resultado">
+      <a mat-raised-button [routerLink]="['/conferencia/',conferencia.id]">{{conferencia.name}} </a>
+    </ul>
+  </div>
+</ng-container>
+<ng-container *ngIf="mostrar === 'post'">
+  <h3>Se han encontrado {{resultado.length}} Posts.</h3>
+  <div>
+    <ul *ngFor="let post of resultado">
+      <a mat-raised-button [routerLink]="['/post/',post.id]">{{post.title}} </a>
+    </ul>
+  </div>
+</ng-container>

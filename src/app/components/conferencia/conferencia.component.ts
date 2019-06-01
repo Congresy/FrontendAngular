@@ -5,10 +5,10 @@ import { DomSanitizer } from '@angular/platform-browser';
 import { ConferenceService } from '../../services/conference.service';
 import { Conferencia } from '../../models/Conferencia';
 import { Place } from '../../models/Place';
-import { Actor } from '../../models/Actor';
-import { UsersService } from '../../services/users.service';
 import { CommentService } from '../../services/comment.service';
 import { Comment } from '../../models/Comment';
+import { Actor } from '../../models/Actor';
+import { UsersService } from '../../services/users.service';
 
 @Component({
   selector: 'app-conference-simple',
@@ -82,8 +82,11 @@ export class ConferenciaDetailedComponent implements OnInit {
   place_id: string;
   own: boolean;
   comments: Comment[];
+  participants: String[];
+  participantArray: Actor[] = [];
+  speakers: string[];
   constructor(public conferenciaService: ConferenceService, private activatedRoute: ActivatedRoute, private sanitizer: DomSanitizer,
-    private commentService: CommentService) {
+    private commentService: CommentService, private userService: UsersService) {
   }
 
   ngOnInit() {
@@ -92,6 +95,15 @@ export class ConferenciaDetailedComponent implements OnInit {
     });
     this.conferenciaService.getConf(this.id).subscribe(async data => {
       this.conferencia = data;
+      console.log('PARTICIPANTS' + data.participants);
+      for (const participant of data.participants) {
+        this.userService.getOneById(participant).subscribe(parti => {
+          this.participantArray.push(parti);
+        });
+      } if (data.speakersNames !== null) {
+        this.speakers = data.speakersNames.split(',');
+      }
+      this.participants = data.participants;
       await sleep(4000);
       this.own = sessionStorage.getItem('userId') === this.conferencia.organizator;
       console.log(this.own);
@@ -100,14 +112,43 @@ export class ConferenciaDetailedComponent implements OnInit {
         console.log(place);
       });
     });
-    this.commentService.getItemComments(this.id).subscribe(data => this.comments = data, error => console.log(error));
+    this.commentService.getItemComments(this.id).subscribe(res => {
+      this.comments = res;
+      for (const comment of res) {
+        const index = res.indexOf(comment);
+        if (comment.text === '** Comment deleted **') {
+          if (index !== -1) {
+            res.splice(index, 1);
+          }
+        }
+      }
+      this.comments = res;
+    }, error => console.log(error));
   }
 
+  participar() {
+    this.conferenciaService.participar(sessionStorage.getItem('userId'), this.id).subscribe(
+      conferencia => { this.conferencia = conferencia; }
+    );
+  }
+
+  canParticipate(): boolean {
+
+    if (this.conferencia !== undefined) {
+      return !this.participants.includes(sessionStorage.getItem('userId'))
+        && this.conferencia.allowedParticipants - this.conferencia.seatsLeft > 0;
+    } else {
+      this.canParticipate();
+    }
+  }
   getGoogleURL() {
-    console.log(this.place.address.replace('C/', '').replace(' ', '+') + ',' + this.place.town + ',' + this.place.country);
-    return this.sanitizer
-      .bypassSecurityTrustResourceUrl('https://www.google.com/maps/embed/v1/place?key=AIzaSyD98Q94QW9WHOR5L-pbGY-EcZCAkoyLRHE&q=' +
-        this.place.address.replace('C/', '') + ',' + this.place.town + ',' + this.place.country);
+    if (this.place.address !== undefined) {
+      return this.sanitizer
+        .bypassSecurityTrustResourceUrl('https://www.google.com/maps/embed/v1/place?key=AIzaSyD98Q94QW9WHOR5L-pbGY-EcZCAkoyLRHE&q=' +
+          this.place.address.replace('C/', '') + ',' + this.place.town + ',' + this.place.country);
+    } else {
+      this.getGoogleURL();
+    }
   }
 
 }

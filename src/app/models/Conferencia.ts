@@ -12,7 +12,7 @@ export class Conferencia {
   public end: string;
   public id: string;
   public place: string;
-  public participants: Array<String>;
+  public participants: Array<string>;
   public seatsLeft: number;
 
 }

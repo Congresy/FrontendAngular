@@ -59,4 +59,8 @@ export class PostService {
   unlike(id: string): Observable<Post> {
     return this.http.put<Post>(urlBase + '/votes/' + id + '?action=delete', httpOptions);
   }
+
+  search(keyword: string): Observable<Post[]> {
+    return this.http.get<Post[]>(urlBase + '/search/' + keyword, httpOptions);
+  }
 }

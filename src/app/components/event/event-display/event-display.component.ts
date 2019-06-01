@@ -40,15 +40,10 @@ export class EventDisplayComponent implements OnInit {
 
       });
     });
-    this.getParticipants();
     this.commentService.getItemComments(this.id).subscribe(data => this.comments = data, error => console.log(error));
   }
   isOwn() {
     return this.conference.organizator === sessionStorage.getItem('userId');
   }
-  getParticipants() {
-
-  }
-
 
 }

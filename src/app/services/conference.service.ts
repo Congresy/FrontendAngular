@@ -92,6 +92,14 @@ export class ConferenceService {
     return this.http.delete(this.conferencesUrl + '/' + id);
   }
 
+  participar(idUser: string, idConferencia: string): Observable<Conferencia> {
+    return this.http.put<Conferencia>(this.conferencesUrl + '/add/' + idConferencia + '/participants/' + idUser, httpOptions);
+  }
+
+  search(keyword: string): Observable<Conferencia[]> {
+    return this.http.get<Conferencia[]>(this.conferencesUrl + '/search/' + keyword, httpOptions);
+  }
+
   generateForm(): FormGroup {
     return this.fb.group({
       conference: this.fb.group({

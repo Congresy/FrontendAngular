@@ -1,6 +1,14 @@
-<h3>Eventos</h3>
-<a *ngIf='own' href="" (click)="navigateCreate()">Crear evento</a>
-<ul *ngFor="let evento of eventos">
-        <a mat-raised-button [routerLink]="['/event/',evento.id]">{{evento.name}} </a> <button
-                *ngIf="!own && imParticipant(evento.participants)" (click)="unirse(evento.id)">UNIRSE</button>
-</ul>
+<div *ngIf="eventos !== undefined">
+        <h3>Eventos</h3>
+        <a *ngIf='own' href="" (click)="navigateCreate()">Crear evento</a>
+        <div *ngIf="hayEventos(); else noEvents">
+                <ul *ngFor="let evento of eventos">
+                        <a mat-raised-button [routerLink]="['/event/',evento.id]">{{evento.name}} </a> <button
+                                mat-stroked-button *ngIf="!own && !imParticipant(evento.participants)"
+                                (click)="unirse(evento.id)">Participar</button>
+                </ul>
+        </div>
+        <div *ngIf="!hayEventos()">
+                No hay eventos registrados para esta conferencia.
+        </div>
+</div>

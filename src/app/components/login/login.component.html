@@ -1,11 +1,14 @@
 <div class="login-form">
     <form [formGroup]="loginForm" (ngSubmit)="postLogin()">
-        <mat-form-field>
-            <input matInput placeholder="Nick" type="text" formControlName="username">
-        </mat-form-field>
-        <mat-form-field>
-            <input matInput placeholder="Password" type="password" formControlName="password">
-        </mat-form-field>
-        <button type="submit" [disabled]="loginForm.invalid">Login</button>
+        <fieldset>
+            <legend>Datos usuario</legend>
+            <mat-form-field>
+                <input matInput placeholder="Nick" type="text" formControlName="username" required>
+            </mat-form-field>
+            <mat-form-field>
+                <input matInput placeholder="Password" type="password" formControlName="password" required>
+            </mat-form-field>
+        </fieldset>
+        <button mat-stroked-button type="submit" [disabled]="loginForm.invalid">Login</button>
     </form>
 </div>

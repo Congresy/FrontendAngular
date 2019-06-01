@@ -1,4 +1,5 @@
-<div style="margin-top:150px;">
+<div style="margin-top:120px;">
+  <h2>Posts</h2>
   <ul *ngFor="let post of posts">
     <mat-card>
       <mat-card-title>{{post.title}}</mat-card-title>
@@ -7,15 +8,22 @@
         Posted: {{post.posted}} Autor: {{post.authorName}}<br>
         <div>
           <h3>Comentarios</h3>
-          <app-comment *ngFor="let comment of comments.get(post.id)" [id]="comment.id"></app-comment>
+          <div *ngIf="comments.get(post.id)">
+            <app-comment *ngFor="let comment of comments.get(post.id)" [id]="comment.id"></app-comment>
+            <br>
+          </div>
+          <div *ngIf="comments.get(post.id)">
+            Esta publicación aún no tiene comentarios. Sé el primero en escribir uno.
+          </div>
           <app-comment-form [id]="post.id"></app-comment-form>
         </div>
       </mat-card-content>
       <mat-card-actions>
         <br><img style="cursor: pointer;" src='../../../assets/img/like.png' (click)="like(post.id)"><img
           style="cursor: pointer;" src='../../../assets/img/unlike.png' (click)="unlike(post.id)">{{post.votes}}
-        <img src='../../../assets/img/views.png'>{{post.views}}<a [routerLink]="['/post-edit', post.id]"><img
-            src='../../../assets/img/edit.png'></a><img style="cursor: pointer;" src='../../../assets/img/delete.png'
+        <img src='../../../assets/img/views.png'>{{post.views}}<a *ngIf="isOwn(post.authorId)"
+          [routerLink]="['/post-edit', post.id]"><img src='../../../assets/img/edit.png'></a><img
+          *ngIf="isOwn(post.authorId)" style="cursor: pointer;" src='../../../assets/img/delete.png'
           (click)="delete(post.id)">
       </mat-card-actions>
     </mat-card>

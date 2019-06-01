@@ -24,6 +24,8 @@ import { PostFormComponent } from './components/post/post-form/post-form.compone
 import { AdminComponent } from './components/administration/admin/admin.component';
 import { BannerComponent } from './components/administration/banner/banner.component';
 import { BannerFormComponent } from './components/administration/banner/banner-form/banner-form.component';
+import { SearchComponent } from './components/search/search/search.component';
+import { PostDisplayComponent } from './components/post/post-display/post-display.component';
 
 const routes: Routes = [
     {
@@ -95,6 +97,11 @@ const routes: Routes = [
         component: PostFormComponent,
         canActivate: [AuthGuardService]
     }, {
+        path: 'post/:id',
+        component: PostDisplayComponent,
+        canActivate: [AuthGuardService]
+
+    }, {
         path: 'administrator',
         component: AdminComponent,
         canActivate: [AuthGuardService]
@@ -110,6 +117,11 @@ const routes: Routes = [
     }, {
         path: 'banner-edit/:id',
         component: BannerFormComponent,
+        canActivate: [AuthGuardService]
+    },
+    {
+        path: 'search',
+        component: SearchComponent,
         canActivate: [AuthGuardService]
     }
 ];
