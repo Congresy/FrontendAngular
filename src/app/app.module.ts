@@ -62,6 +62,9 @@ import { BannerFormComponent } from './components/administration/banner/banner-f
 import { ProfileFormComponent } from './components/user/profile/profile-form/profile-form.component';
 import { SearchComponent } from './components/search/search/search.component';
 import { PostDisplayComponent } from './components/post/post-display/post-display.component';
+import { AsistireComponent } from './components/asistire/asistire/asistire.component';
+import { AsistireConferenciasComponent } from './components/asistire/asistire-conferencias/asistire-conferencias.component';
+import { AsistireEventosComponent } from './components/asistire/asistire-eventos/asistire-eventos.component';
 
 
 @NgModule({
@@ -78,7 +81,9 @@ import { PostDisplayComponent } from './components/post/post-display/post-displa
         EventDisplayComponent, PostComponent, CommentComponent, PostFormComponent, CommentFormComponent,
         AdministratorActorsComponent, AdministratorConferencesComponent, AdministratorPostsComponent,
         AdministratorCommentsComponent, AdministratorEventsComponent, AdminComponent,
-        SanitizePipe, BannerComponent, BannerDisplayComponent, BannerFormComponent, ProfileFormComponent, SearchComponent, PostDisplayComponent],
+        SanitizePipe, BannerComponent, BannerDisplayComponent, BannerFormComponent,
+        ProfileFormComponent, SearchComponent, PostDisplayComponent, AsistireComponent,
+        AsistireConferenciasComponent, AsistireEventosComponent],
     providers: [UsersService, AuthGuardService, DatePipe, ConferenceService, PlaceService, EventService,
         PostService, BannerService,
         CommentService],

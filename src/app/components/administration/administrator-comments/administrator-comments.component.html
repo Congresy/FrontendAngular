@@ -1,4 +1,4 @@
-<div class="content">
+<div>
   Comentarios en el sistema: {{comments.length}}
   <ul *ngFor="let comment of comments">
     {{comment.title}} <button (click)="delete(comment.id)">Eliminar</button>

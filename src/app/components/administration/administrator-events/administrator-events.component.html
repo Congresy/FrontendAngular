@@ -1,4 +1,4 @@
-<div class="content">
+<div>
   Eventos en el sistema: {{events.length}}
   <ul *ngFor="let event of events">
     {{event.name}} <button (click)="delete(event.id)">Eliminar</button>

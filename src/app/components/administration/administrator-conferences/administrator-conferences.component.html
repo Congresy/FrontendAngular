@@ -1,4 +1,4 @@
-<div class="content">
+<div>
   Conferencias en el sistema: {{conferences.length}}
   <ul *ngFor="let conference of conferences">
     {{conference.name}} <button (click)="delete(conference.id)">Eliminar</button>

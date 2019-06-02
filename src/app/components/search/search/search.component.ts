@@ -32,7 +32,7 @@ export class SearchComponent implements OnInit {
         this.postService.search(this.busqueda).subscribe(posts => {
           this.resultado = posts;
           this.mostrar = this.tipo;
-        })
+        });
     }
   }
 

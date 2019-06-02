@@ -8,7 +8,12 @@
             <button mat-menu-item routerLink="conferencias/own">Mis conferencias</button>
         </mat-menu>
         <button *ngIf="role" mat-stroked-button routerLink="post-list">Posts</button>
-        <button *ngIf="role" mat-stroked-button routerLink="post-list">Asistiré</button>
+        <button *ngIf="role" mat-stroked-button [matMenuTriggerFor]="menuasistire">Asistiré</button>
+        <mat-menu #menuasistire="matMenu">
+            <button mat-menu-item routerLink="asistire/conferencias">Conferencias</button>
+            <button mat-menu-item routerLink="asistire/eventos">Eventos</button>
+        </mat-menu>
+        <button mat-stroked-button *ngIf="role" routerLink="search">Buscar</button>
         <button *ngIf="isAdministrator()" mat-stroked-button routerLink="administrator">Administración</button>
         <button *ngIf="isAdministrator()" mat-stroked-button routerLink="banners">Anuncios</button>
         <button *ngIf="role" mat-stroked-button routerLink="profile">Perfil</button>

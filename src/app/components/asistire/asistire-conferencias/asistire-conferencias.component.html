@@ -1,0 +1,6 @@
+<div class="content">
+  <ul *ngFor="let conferencia of conferencias">
+    <a mat-raised-button [routerLink]="['/conferencia/',conferencia.id]">{{conferencia.name}}
+      <b>{{conferencia.start}}</b> </a>
+  </ul>
+</div>

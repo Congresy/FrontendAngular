@@ -135,7 +135,7 @@ export class ConferenciaDetailedComponent implements OnInit {
 
     if (this.conferencia !== undefined) {
       return !this.participants.includes(sessionStorage.getItem('userId'))
-        && this.conferencia.allowedParticipants - this.conferencia.seatsLeft > 0;
+        && this.conferencia.allowedParticipants - this.conferencia.seatsLeft >= 0;
     } else {
       this.canParticipate();
     }

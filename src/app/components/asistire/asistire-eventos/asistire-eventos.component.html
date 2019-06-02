@@ -1,0 +1,6 @@
+<div class="content">
+  <ul *ngFor="let evento of eventos">
+    <a mat-raised-button [routerLink]="['/event/',evento.id]">{{evento.name}}
+      <b>{{evento.start}}</b> </a>
+  </ul>
+</div>

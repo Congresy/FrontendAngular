@@ -17,6 +17,10 @@ export class EventService {
     return this.http.get<Evento[]>('https://congresy.herokuapp.com/events', httpOptions);
   }
 
+  getOwn(): Observable<Evento[]> {
+    return this.http.get<Evento[]>('https://congresy.herokuapp.com/events/own/' + sessionStorage.getItem('userId'), httpOptions);
+  }
+
   create(event: Evento): Observable<Evento> {
     return this.http.post<Evento>('https://congresy.herokuapp.com/events', event, httpOptions);
   }

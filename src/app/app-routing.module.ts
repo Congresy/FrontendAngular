@@ -26,6 +26,8 @@ import { BannerComponent } from './components/administration/banner/banner.compo
 import { BannerFormComponent } from './components/administration/banner/banner-form/banner-form.component';
 import { SearchComponent } from './components/search/search/search.component';
 import { PostDisplayComponent } from './components/post/post-display/post-display.component';
+import { AsistireConferenciasComponent } from './components/asistire/asistire-conferencias/asistire-conferencias.component';
+import { AsistireEventosComponent } from './components/asistire/asistire-eventos/asistire-eventos.component';
 
 const routes: Routes = [
     {
@@ -122,6 +124,16 @@ const routes: Routes = [
     {
         path: 'search',
         component: SearchComponent,
+        canActivate: [AuthGuardService]
+    },
+    {
+        path: 'asistire/conferencias',
+        component: AsistireConferenciasComponent,
+        canActivate: [AuthGuardService]
+    },
+    {
+        path: 'asistire/eventos',
+        component: AsistireEventosComponent,
         canActivate: [AuthGuardService]
     }
 ];
